@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legacy IT Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand" onclick="go('home')">
+      <span class="mark">IT</span> Legacy IT Hub
+    </div>
+    <nav class="nav-links">
+      <button data-nav="home" class="active" onclick="go('home')">Home</button>
+      <button data-nav="learn" onclick="go('learn')">Learning</button>
+      <button data-nav="tracker" onclick="go('tracker')">Issue Tracker</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<section id="home" class="page show">
+  <main>
+    <div class="hero">
+      <span class="eyebrow">Internal Knowledge Base</span>
+      <h1>Your IT work, <em>documented once.</em></h1>
+      <p>A personal reference hub for everything you learn on the job — InSync EHR workflows, Lauris, networking, and hardware — plus a searchable log of every issue you've solved.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="go('learn')">Browse Learning &rarr;</button>
+        <button class="btn btn-ghost" onclick="go('tracker')">Open Issue Tracker</button>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="n" id="stat-cats">4</div><div class="l">Categories</div></div>
+        <div class="stat"><div class="n" id="stat-topics">0</div><div class="l">Topics documented</div></div>
+        <div class="stat"><div class="n" id="stat-issues">0</div><div class="l">Issues logged</div></div>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <h2>Categories</h2>
+      <p>Pick a category to see its topics. Each topic walks through the steps.</p>
+    </div>
+    <div class="grid" id="home-cats"></div>
+    <div style="height:50px"></div>
+  </main>
+</section>
+
+<!-- ================= LEARNING ================= -->
+<section id="learn" class="page">
+  <main>
+    <!-- Category grid view -->
+    <div id="learn-cats-view">
+      <div class="sec-head"><h2>Learning</h2><p>Choose a category to begin.</p></div>
+      <div class="searchbar">
+        <input id="topic-search" placeholder="Search every topic across all categories…" oninput="searchTopics(this.value)">
+      </div>
+      <div id="search-results" style="display:none"></div>
+      <div class="grid" id="learn-cats"></div>
+    </div>
+
+    <!-- Topic view with sidebar -->
+    <div id="learn-topic-view" style="display:none">
+      <button class="topic-back" onclick="showCats()">&larr; All categories</button>
+      <div class="learn-shell" id="learn-shell">
+        <aside class="side">
+          <div class="side-top">
+            <span class="side-cat" id="side-cat-name">Category</span>
+            <button class="side-toggle" id="side-toggle" onclick="toggleSidebar()" title="Collapse / expand">&#9776;</button>
+          </div>
+          <ul id="side-list"></ul>
+        </aside>
+        <article class="content" id="topic-content"></article>
+      </div>
+    </div>
+  </main>
+</section>
+
+<!-- ================= TRACKER ================= -->
+<section id="tracker" class="page">
+  <main>
+    <div class="sec-head"><h2>Issue Tracker</h2><p>Log a problem and its fix once — find it again in seconds.</p></div>
+    <div class="tracker-grid">
+      <div class="issue-form">
+        <h3>Log a new issue</h3>
+        <p class="sub">Saved in this browser so it stays here next time.</p>
+        <div class="field"><label>Issue title</label><input id="f-title" placeholder="e.g. Facility defaults wrong on booking"></div>
+        <div class="field"><label>Description</label><textarea id="f-desc" placeholder="What happened? What's the symptom?"></textarea></div>
+        <div class="field"><label>Steps to fix / solution</label><textarea id="f-fix" placeholder="1. …&#10;2. …"></textarea></div>
+        <div class="field"><label>Tag / category</label>
+          <select id="f-tag">
+            <option>InSync EHR</option><option>Lauris</option><option>Networking</option>
+            <option>Hardware</option><option>Software</option><option>OS</option><option>Other</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="addIssue()">Save issue</button>
+      </div>
+
+      <div>
+        <div class="searchbar">
+          <input id="issue-search" placeholder="Search issues…" oninput="renderIssues()">
+          <select id="issue-filter" onchange="renderIssues()">
+            <option value="">All tags</option>
+            <option>InSync EHR</option><option>Lauris</option><option>Networking</option>
+            <option>Hardware</option><option>Software</option><option>OS</option><option>Other</option>
+          </select>
+        </div>
+        <div class="issue-list" id="issue-list"></div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <span>Legacy IT Hub — internal reference. Built for quick recall.</span>
+    <span id="foot-date"></span>
+  </div>
+</footer>
+
+
+<!-- Content lives in data.js — edit that file to add topics. -->
+<script src="data.js"></script>
+<!-- App logic lives in app.js — rarely needs changes. -->
+<script src="app.js"></script>
+</body>
+</html>
