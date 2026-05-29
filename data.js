@@ -56,14 +56,96 @@ const DATA = {
   },
   networking: {
     name:"Networking", icon:"🌐",
-    blurb:"Connectivity, Wi-Fi, printers and shared drives.",
+    blurb:"Connectivity, Wi-Fi, shared drives, VPN, and the common network fixes you handle daily.",
     topics:[
+      { id:"net-nointernet", title:"No Internet Connection",
+        lead:"A wired workstation can't reach the internet or company systems.",
+        steps:[
+          {text:"Check the <b>network cable</b> is firmly plugged into both the PC and the wall port, and look for a link light on the port.",},
+          {text:"Look at the network icon in the taskbar — note whether it shows 'No internet', a red X, or a globe.",},
+          {text:"Restart the PC, then try a different <b>wall port</b> or a known-good cable to rule out the cable or jack.", note:"A dead wall jack is common — testing another port quickly tells you if it's the PC or the network drop."},
+          {text:"If multiple users are affected, it's likely the switch or upstream network, not one PC — escalate to the network admin.",},
+        ]},
+
+      { id:"net-wifi", title:"Wi-Fi Won't Connect",
+        lead:"A laptop or device can't join the wireless network.",
+        steps:[
+          {text:"Confirm <b>Wi-Fi is turned on</b> (check the taskbar icon and any physical Wi-Fi switch/function key on laptops).",},
+          {text:"Click the Wi-Fi icon, select the correct company network, and choose <b>Connect</b>.",},
+          {text:"If it won't connect, click <b>Forget</b> the network, then reconnect and re-enter the password/credentials.", note:"Forgetting and rejoining clears a saved bad password or stale settings — fixes most Wi-Fi issues."},
+          {text:"Toggle Wi-Fi off and on, or restart the device, and confirm other devices can still reach the same network.",},
+        ]},
+
+      { id:"net-slow", title:"Slow Internet / Network",
+        lead:"Connection works but pages and systems load slowly.",
+        steps:[
+          {text:"Restart the PC and confirm whether the slowness affects <b>one site</b> or everything.",},
+          {text:"Check whether other users nearby are also slow — if so, it's a network issue, not the one PC.",},
+          {text:"On Wi-Fi, check signal strength; move closer to an access point or switch to a <b>wired connection</b> to compare.", note:"A weak Wi-Fi signal is a frequent cause of 'slow internet' complaints."},
+          {text:"Close large downloads, updates, or streaming that may be using bandwidth, then retest.",},
+        ]},
+
+      { id:"net-cable", title:"Ethernet Cable Not Connecting",
+        lead:"A wired connection shows 'unplugged' or 'no network' even when cabled.",
+        steps:[
+          {text:"Reseat the cable at both ends until you hear the clip <b>click</b>, and check for a link light at the PC's port.",},
+          {text:"Swap in a <b>known-good cable</b> to rule out a damaged one.", note:"Cables fail silently — the clip breaks or a wire pulls loose inside the connector."},
+          {text:"Try a different wall jack; if a new jack works, label the bad one and report it.",},
+          {text:"If no jack works, suspect the PC's network adapter and escalate.",},
+        ]},
+
+      { id:"net-mapdrive", title:"Mapping a Shared Network Drive",
+        lead:"Give a user a permanent drive letter for a shared folder.",
+        steps:[
+          {text:"Open <b>File Explorer</b>, right-click <b>This PC</b>, and choose <b>Map network drive</b>.",},
+          {text:"Pick a drive letter and enter the folder path in the form <b>\\\\server\\sharename</b>.",},
+          {text:"Tick <b>Reconnect at sign-in</b> so the drive returns after every restart, then click Finish.", note:"Without 'Reconnect at sign-in', the mapping disappears the next time they log off."},
+          {text:"Confirm the user can open the drive and see the files they're supposed to have access to.",},
+        ]},
+
+      { id:"net-sharedfolder", title:"Can't Access a Shared Folder",
+        lead:"A user gets an error opening a shared drive or network folder.",
+        steps:[
+          {text:"Confirm the user is <b>on the network</b> (wired or VPN if remote) and other network resources work.",},
+          {text:"Have them close and reopen the mapped drive, or restart to refresh the connection.",},
+          {text:"Note the exact error — 'access denied' is a <b>permissions</b> issue, while 'not found' is a path or connectivity issue.", note:"'Access denied' means it's a permissions request for the admin; the folder itself is reachable."},
+          {text:"For access-denied, verify the user is in the correct security group; escalate the permission request if needed.",},
+        ]},
+
       { id:"net-printer", title:"Connecting a Network Printer",
         lead:"Add a shared network printer for a workstation.",
         steps:[
-          {text:"Find the printer's <b>IP address</b> or network name.",},
-          {text:"On the PC, open <b>Settings → Printers & scanners → Add device</b>.",},
-          {text:"Add by IP/hostname, install the correct driver, and print a test page.", note:"Wrong driver = garbled prints. Match the exact model."},
+          {text:"Find the printer's <b>IP address</b> or network name (often printed on a config page from the printer).",},
+          {text:"On the PC, open <b>Settings → Bluetooth & devices → Printers & scanners → Add device</b>.",},
+          {text:"If it isn't found automatically, choose <b>Add manually</b> and add it by IP address or hostname.",},
+          {text:"Install the correct driver for that exact model and print a test page.", note:"The wrong driver causes garbled or blank prints — always match the exact model number."},
+        ]},
+
+      { id:"net-printoffline", title:"Printer Shows Offline / Won't Print",
+        lead:"A previously working network printer stops printing.",
+        steps:[
+          {text:"Check the printer itself is <b>powered on</b>, connected to the network, and free of errors or paper jams on its display.",},
+          {text:"On the PC, open the printer queue and clear any <b>stuck jobs</b> at the top of the list.", note:"One failed job can freeze the whole queue and block everything behind it."},
+          {text:"Right-click the printer and uncheck <b>Use Printer Offline</b> if it's set.",},
+          {text:"Restart the <b>Print Spooler</b> service (or restart the PC) and send a test page.",},
+        ]},
+
+      { id:"net-vpn", title:"VPN Setup & Troubleshooting",
+        lead:"Connect a remote user securely to the company network.",
+        steps:[
+          {text:"Open the company VPN client and sign in with the user's <b>network credentials</b>.",},
+          {text:"Confirm the user first has a working internet connection — the VPN runs on top of it.", note:"No internet means no VPN; always confirm basic connectivity first."},
+          {text:"If it won't connect, disconnect and reconnect, or restart the VPN client.",},
+          {text:"Once connected, confirm the user can reach internal systems and mapped drives that need the VPN.",},
+        ]},
+
+      { id:"net-ipconfig", title:"Releasing & Renewing the IP Address",
+        lead:"Fix a workstation stuck with a bad or missing network address.",
+        steps:[
+          {text:"Open <b>Command Prompt</b> (search 'cmd' in the Start menu).",},
+          {text:"Type <b>ipconfig /release</b> and press Enter to drop the current address.",},
+          {text:"Type <b>ipconfig /renew</b> and press Enter to request a fresh one from the network.", note:"An address starting with 169.254 means the PC didn't get one from the network — this renew step often fixes it."},
+          {text:"Run <b>ipconfig</b> to confirm a valid address came back, then test the connection.",},
         ]},
     ]
   },
