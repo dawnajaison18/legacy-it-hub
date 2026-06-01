@@ -99,6 +99,76 @@ const DATA = {
           {text:"Assign the <b>roles and permissions</b> that match their job — this controls what they're allowed to see and do.",},
           {text:"Save, then check that the provider now shows up in the scheduling and billing screens.",},
         ]},
+
+      { id:"insync-addendum", title:"Adding an Addendum to a Signed Encounter",
+        lead:"Add extra notes to an encounter that's already been signed and closed, without changing the original note.",
+        steps:[
+          {text:"In InSync, use the <b>search box</b> at the top to search for the patient by name.",},
+          {text:"Click the patient's profile, then choose <b>Facesheet</b> from the menu that appears.",},
+          {text:"In the <b>Encounter Details</b> section, find the encounter you want and click the red <b>Encounter Closed</b> icon.",},
+          {text:"Click the <b>End Encounter</b> icon in the top-right corner of the screen.",},
+          {text:"Click the <b>Addendum</b> tab along the top.",},
+          {text:"Type your extra notes in the <b>Addendum</b> field, then click <b>Save</b>.",},
+          {text:"A green message <b>\"Addendum saved successfully\"</b> appears at the top of the screen.",},
+          {text:"Click the <b>Exit (X)</b> icon to close the encounter note page.",},
+          {text:"Click on the encounter note again to view the saved addendum.",},
+          {text:"The closed note now shows a green note at the end saying an addendum has been added.", note:"The original signed note is never changed — the addendum is added separately, so the record stays intact."},
+          {text:"Below the provider's signature, an <b>Addendum Details</b> section shows who added each addendum, the date and time, and what was added.",},
+        ]},
+
+      { id:"insync-export-payors", title:"Exporting the List of Payors",
+        lead:"Export the full insurance/payor list from InSync to an Excel file.",
+        steps:[
+          {text:"Click the <b>Admin</b> icon at the bottom-left of the screen. Or use the <b>Quick Search</b> bar (top-left) and type <b>Insurance in Administration</b>.",},
+          {text:"This opens the <b>Insurance Management</b> screen.",},
+          {text:"At the <b>top-right corner of the grid</b>, find and click the <b>Export icon</b> (it looks like a spreadsheet/grid icon).",},
+          {text:"A pop-up titled <b>Export Insurance Details</b> appears. Tick any extra checkboxes you need, then click <b>Export Data</b>.", note:"Use the Financial Class, Insurance Type, or Insurance Name dropdowns first if you want to filter what's exported."},
+          {text:"The list downloads as an Excel file (<b>Insurance List.xlsx</b>) — find it in your browser's recent downloads, ready to open in Excel.",},
+        ]},
+
+      { id:"insync-create-group", title:"Creating a Patient Group",
+        lead:"Set up a new patient group in InSync, used for group therapy sessions.",
+        steps:[
+          {text:"From the <b>Quick Search</b> bar in the top-left of the Dashboard, type <b>GROUPS</b> and select <b>Patient Groups</b>.",},
+          {text:"On the Patient Groups screen, click <b>Create Patient Group</b> to open the form.",},
+          {text:"Fill in the <b>Group Name</b> — a unique name to identify this group.",},
+          {text:"Set the <b>Effective Start Date</b> (when the group becomes active), and an <b>Effective End Date</b> only if it has an end (leave it blank if the group is ongoing).",},
+          {text:"Choose the <b>Provider</b> to attach to the group.",},
+          {text:"Under <b>Add Patients</b>, search by First Name, Last Name, MRN, or SSN. The patients you pick appear in the <b>Selected Patients</b> panel on the right.",},
+          {text:"Click <b>Save</b> to create the group.", note:"Every patient needs a Group Program added on the Patient Group screen before you can document group notes for them later."},
+        ]},
+
+      { id:"insync-manage-groups", title:"Managing Patient Groups",
+        lead:"Expand, edit, remove members from, or inactivate an existing patient group.",
+        steps:[
+          {text:"On the Patient Groups screen, the icons next to each group do different things: the <b>plus (+)</b> expands the member list, the <b>purple pencil</b> edits the group or adds members, and the <b>red X</b> inactivates the whole group.",},
+          {text:"To <b>remove a patient</b>: click the <b>plus (+)</b> to expand the group, click the <b>Inactivate Patient from Group</b> icon next to that patient, then click <b>Yes</b> on the confirmation. A \"Patient Removed Successfully\" message appears.",},
+          {text:"To <b>edit the group or add members</b>: expand the group with <b>plus (+)</b>, click the <b>purple pencil</b> next to the group name, make your changes on the details page, then click <b>Update</b>. A \"Patient Group Updated Successfully\" message appears.",},
+          {text:"To <b>edit one patient's record</b> within the group: expand the group, click the <b>pencil</b> on that patient's row, make changes, then click the <b>tick (✔)</b> to save — or the <b>cross (✖)</b> to discard.",},
+        ]},
+
+      { id:"insync-schedule-group", title:"Scheduling a Group Appointment",
+        lead:"Book a group therapy session on the Scheduler, and verify each patient's details first.",
+        steps:[
+          {text:"Open the <b>Scheduler</b> using its icon, then click the date, day, and time you want — a booking pop-up appears.",},
+          {text:"In the booking form, set the <b>Patient/Group</b> (the group name), the <b>Program</b>, the <b>Visit Status</b> (set to Pending), and the <b>Visit Type</b> (which group encounter type it is).", note:"The POS Code fills in automatically if it was mapped to the group when the group was created."},
+          {text:"Before booking, expand the <b>Group Details</b> ribbon to see all the group's patients.",},
+          {text:"Select each patient one by one and check their <b>Primary and Secondary Insurance</b> and <b>Primary and Secondary Authorization</b> are correct. Repeat for every patient.", note:"Verifying insurance and authorization before booking avoids billing problems later."},
+          {text:"Once every patient is verified, click <b>Book Appointment</b>. The group shows as a light-blue ribbon on the Scheduler, with an orange number showing how many patients are booked.",},
+          {text:"To add more patients later: hover over the group encounter name on the Scheduler until a link appears, click it, pick the patient, set their Visit Status, and click <b>Book Appointment</b>.",},
+        ]},
+
+      { id:"insync-group-note", title:"Documenting a Group Therapy Note",
+        lead:"Complete a group therapy note in three phases — the shared group note, each patient's individual note, and the charting elements.",
+        steps:[
+          {text:"First make sure every patient has the <b>Group Program</b> added on the Patient Group screen.",},
+          {text:"Start from the <b>Scheduler</b>: click the group appointment, then choose <b>Check In & Start Encounter</b> — this opens the Group Therapy Notes page.",},
+          {text:"<b>Phase 1 — Group Note:</b> select the patients to include, choose <b>Group</b> from the Template dropdown, complete the note (Subjective, Plan, and tick the Therapeutic Interventions that apply), then click <b>Add to Patient Chart</b>. Minimize the Group Note bar with the up-arrow (▲).",},
+          {text:"<b>Phase 2 — Individual Notes:</b> for each patient, choose <b>Group Note - Individual</b> as the template (pick the patient from the dropdown, or tick their checkbox in Group Members to auto-fill the name). Fill it out and click <b>Save</b> — a \"Data Saved Successfully\" message appears. Repeat for every patient.",},
+          {text:"<b>Phase 3 — Charting Elements:</b> click the <b>Charting Elements</b> icon for a group member, complete all the tabs (Individual Notes, Group Notes, Diagnosis, CFARS/FARS, Visit Codes), then click <b>Save</b>.", note:"If you miss a required element, InSync shows a restriction alert. A patient's name turns orange once their encounter is closed."},
+          {text:"Click <b>Go to Group Therapy</b> to return to the group encounter, and repeat Phase 3 for each patient.",},
+          {text:"When all patients are done, click <b>End Encounter</b>, complete the End Encounter pop-up, and click <b>Sign</b>.",},
+        ]},
     ]
   },
 
@@ -373,4 +443,22 @@ const DATA = {
         ]},
     ]
   },
+};
+
+/* ============================================================
+   STEP IMAGES — maps screenshots to steps by topic id.
+   Each array matches the topic's steps in order (0 = first step).
+   Use null for steps with no image. Files live in the images/ folder.
+   To change an image, just edit the filename here.
+   ============================================================ */
+const STEP_IMAGES = {
+  "insync-addendum":[null,"images/insync-addendum-2.png","images/insync-addendum-3.png","images/insync-addendum-4.png","images/insync-addendum-5.png","images/insync-addendum-6.png","images/insync-addendum-7.png","images/insync-addendum-8.png","images/insync-addendum-9.png","images/insync-addendum-10.png","images/insync-addendum-11.png"],
+  "insync-export-payors":["images/insync-export-1.png",null,"images/insync-export-3.png","images/insync-export-4.png","images/insync-export-5.png"],
+  "insync-create-group":["images/insync-creategroup-1.png","images/insync-creategroup-2.png","images/insync-creategroup-3.png",null,null,null,null],
+  "insync-manage-groups":["images/insync-managegroups-1.png","images/insync-managegroups-2.png","images/insync-managegroups-3.png","images/insync-managegroups-4.png"],
+  "insync-schedule-group":["images/insync-schedule-1.png","images/insync-schedule-2.png","images/insync-schedule-3.png",null,"images/insync-schedule-5.png","images/insync-schedule-6.png"],
+  "insync-group-note":[null,"images/insync-groupnote-2.png","images/insync-groupnote-3.png","images/insync-groupnote-4.png","images/insync-groupnote-5.png","images/insync-groupnote-6.png","images/insync-groupnote-7.png"],
+  "lauris-delete-images":["images/lauris-delete-1.png","images/lauris-delete-2.png","images/lauris-delete-3.png","images/lauris-delete-4.png","images/lauris-delete-5.png","images/lauris-delete-6.png"],
+  "lauris-escribe-single":["images/lauris-escribe-1.png","images/lauris-escribe-2.png","images/lauris-escribe-3.png","images/lauris-escribe-4.png","images/lauris-escribe-5.png","images/lauris-escribe-6.png","images/lauris-escribe-7.png"],
+  "lauris-escribe-bulk":[null,"images/lauris-bulk-2.png","images/lauris-bulk-3.png",null,"images/lauris-bulk-5.png",null],
 };
