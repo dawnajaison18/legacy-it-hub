@@ -52,7 +52,7 @@ function openTopic(key,id){
   currentCat=key;currentTopic=id;
   const c=DATA[key], t=c.topics.find(x=>x.id===id);
   document.querySelectorAll('#side-list button').forEach(b=>b.classList.toggle('active',b.dataset.t===id));
-  const imgMap=(window.STEP_IMAGES&&STEP_IMAGES[id])||[];
+  const imgMap=(typeof STEP_IMAGES!=='undefined'&&STEP_IMAGES[id])||[];
   const steps=t.steps.map((s,idx)=>{
     const o=typeof s==='string'?{text:s}:s;
     const img=o.img||imgMap[idx];
