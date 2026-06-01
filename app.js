@@ -85,25 +85,57 @@ function searchTopics(q){
 
 /* ---------------- ISSUE TRACKER (localStorage) ---------------- */
 const KEY='legacy_it_issues';
+let editingId=null;
 function loadIssues(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}}
 function saveIssues(a){try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}}
+function clearForm(){['f-title','f-desc','f-fix'].forEach(i=>document.getElementById(i).value='');}
+function dateStr(){return new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});}
+function setFormMode(){
+  const btn=document.querySelector('.issue-form .btn-primary');
+  let cancel=document.getElementById('cancel-edit');
+  if(!cancel){
+    cancel=document.createElement('button');
+    cancel.id='cancel-edit';
+    cancel.type='button';
+    cancel.className='btn-cancel-edit';
+    cancel.textContent='Cancel edit';
+    cancel.onclick=cancelEdit;
+    cancel.style.display='none';
+    btn.insertAdjacentElement('afterend',cancel);
+  }
+  if(editingId){btn.textContent='Update issue';cancel.style.display='block';}
+  else{btn.textContent='Save issue';cancel.style.display='none';}
+}
+function editIssue(id){
+  const it=loadIssues().find(i=>i.id===id);
+  if(!it)return;
+  document.getElementById('f-title').value=it.title;
+  document.getElementById('f-desc').value=it.desc||'';
+  document.getElementById('f-fix').value=it.fix||'';
+  document.getElementById('f-tag').value=it.tag;
+  editingId=id;setFormMode();
+  document.querySelector('.issue-form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function cancelEdit(){editingId=null;clearForm();setFormMode();}
 function addIssue(){
   const title=document.getElementById('f-title').value.trim();
   if(!title){alert('Please add an issue title.');return;}
-  const arr=loadIssues();
-  arr.unshift({
-    id:Date.now(), title,
-    desc:document.getElementById('f-desc').value.trim(),
-    fix:document.getElementById('f-fix').value.trim(),
-    tag:document.getElementById('f-tag').value,
-    date:new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'})
-  });
-  saveIssues(arr);
-  ['f-title','f-desc','f-fix'].forEach(i=>document.getElementById(i).value='');
+  const desc=document.getElementById('f-desc').value.trim();
+  const fix=document.getElementById('f-fix').value.trim();
+  const tag=document.getElementById('f-tag').value;
+  let arr=loadIssues();
+  if(editingId){
+    arr=arr.map(i=> i.id===editingId ? {...i, title, desc, fix, tag, edited:dateStr()} : i);
+    saveIssues(arr);cancelEdit();
+  }else{
+    arr.unshift({id:Date.now(), title, desc, fix, tag, date:dateStr()});
+    saveIssues(arr);clearForm();
+  }
   renderIssues();updateStats();
 }
 function delIssue(id){
   if(!confirm('Delete this issue?'))return;
+  if(editingId===id) cancelEdit();
   saveIssues(loadIssues().filter(i=>i.id!==id));renderIssues();updateStats();
 }
 function renderIssues(){
@@ -119,7 +151,13 @@ function renderIssues(){
       <div class="issue-head"><h4>${esc(i.title)}</h4><span class="tag">${esc(i.tag)}</span></div>
       ${i.desc?`<div class="desc">${esc(i.desc)}</div>`:''}
       ${i.fix?`<div class="fix"><span class="flbl">Steps to fix</span><pre>${esc(i.fix)}</pre></div>`:''}
-      <div class="row-foot"><span class="date">${i.date}</span><button class="del" onclick="delIssue(${i.id})">Delete</button></div>
+      <div class="row-foot">
+        <span class="date">${i.date||''}${i.edited?` · edited ${i.edited}`:''}</span>
+        <span class="issue-actions">
+          <button class="edit" onclick="editIssue(${i.id})">Edit</button>
+          <button class="del" onclick="delIssue(${i.id})">Delete</button>
+        </span>
+      </div>
     </div>`).join('');
 }
 function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}

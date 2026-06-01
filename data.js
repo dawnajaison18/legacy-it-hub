@@ -113,6 +113,40 @@ const DATA = {
           {text:"Look at the <b>main menu</b> together and point out the areas they'll use most often.",},
           {text:"Set up any <b>favorites or default settings</b> so their daily tasks are quicker to reach.",},
         ]},
+
+      { id:"lauris-escribe-single", title:"E-Scribe (Rcopia) Setup — Single Patient",
+        lead:"Link one patient to DrFirst for electronic prescriptions by giving them a Rcopia ID in Lauris.",
+        steps:[
+          {text:"From the Lauris Online dashboard, click <b>Applications</b> in the left sidebar. It's near the bottom of the left menu and has a grid/app icon.",},
+          {text:"In the Applications section, click <b>RCopia Management (DrFirst) v4.00</b> — this opens the screen where you manage patients' prescribing IDs.",},
+          {text:"Click the <b>Consumers</b> dropdown and choose <b>Consumers Needing Rcopia ID</b>.", note:"Use this filter for a new patient, or any existing patient who still needs a Rcopia ID assigned."},
+          {text:"Now find the patient one of two ways: type their ID in the <b>Search by Consumer</b> box and click <b>Load Consumers</b>; OR click the <b>binocular icon</b> next to that box to open the Consumer Lookup pop-up.", note:"Use the binocular icon when you only have the patient's name, not their ID number."},
+          {text:"If you used the pop-up: type the ID or name, click <b>Search Consumers</b>, then click the <b>right-arrow</b> next to the correct patient. Their ID fills into the search box — then click <b>Load Consumers</b>.",},
+          {text:"When the patient appears in the table, <b>tick the checkbox</b> next to their name, then click the <b>Update Selected</b> button below the table.",},
+          {text:"A pop-up asks \"This will update all selected items in the list. Continue?\" — click <b>OK</b> to finish.", note:"To confirm it worked, switch the Consumers dropdown to \"Consumers With Rcopia ID\" and check the patient now appears there."},
+        ]},
+
+      { id:"lauris-escribe-bulk", title:"E-Scribe (Rcopia) Setup — Bulk Registration",
+        lead:"Register many patients who need a Rcopia ID all at once, instead of one at a time.",
+        steps:[
+          {text:"Click <b>Applications</b> in the left sidebar, then open <b>RCopia Management (DrFirst) v4.00</b>.",},
+          {text:"Click the <b>Consumers</b> dropdown, choose <b>Consumers Needing Rcopia ID</b>, then click <b>Load Consumers</b>. This lists everyone who still needs an ID.",},
+          {text:"Click the <b>Home Phone</b> column header to <b>sort</b> the list.", note:"Sorting by Home Phone groups together patients with missing contact info — those records may be incomplete and should be fixed before registering."},
+          {text:"Go to the <b>last pages</b> of the list and review each patient for any missing information.",},
+          {text:"<b>Tick the checkboxes</b> next to the patients who have complete information.",},
+          {text:"Click <b>Update Selected</b> to register all the checked patients at once, then repeat for the remaining pages.", note:"Use \"Update All\" only if every patient on the current page needs registering."},
+        ]},
+
+      { id:"lauris-delete-images", title:"Deleting Images Permanently",
+        lead:"Permanently remove a scanned document or image from Lauris using the Management Console.",
+        steps:[
+          {text:"Log in to Lauris, then click <b>Configuration</b> in the left-hand menu — it's at the bottom of the panel.", note:"Only authorized administrators can open Configuration settings."},
+          {text:"On the Configuration page, click <b>Management Console</b> in the top navigation links.",},
+          {text:"Click the <b>Show Images to Remove</b> button. You can filter the list by date, week, month, or year.",},
+          {text:"Review the table — it shows Added Date, Form, STBID, Unique ID, Name, Who Removed, and Region. Find the document you want to delete.",},
+          {text:"Check the date, then click the <b>Delete (X) icon</b> next to that document.", note:"Use the magnifying-glass icon to preview a document first, or the green tick mark to mark it \"Do Not Delete,\" which sends it back to the profile."},
+          {text:"A confirmation pop-up appears — click <b>OK</b> to delete it permanently.", note:"This cannot be undone. Best practice: don't delete files from the day before — leave them for 24 hours in case someone needs them recalled."},
+        ]},
     ]
   },
 

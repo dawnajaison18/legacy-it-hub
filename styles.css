@@ -90,12 +90,13 @@
   .card.cat .bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
 
   /* ---------- LEARNING LAYOUT ---------- */
-  .learn-shell{display:grid;grid-template-columns:268px 1fr;gap:30px;padding:34px 0 70px;align-items:start}
+  .learn-shell{display:grid;grid-template-columns:268px 1fr;gap:30px;padding:34px 0 70px;align-items:stretch}
   .learn-shell.collapsed{grid-template-columns:54px 1fr}
   aside.side{
-    position:sticky;top:88px;background:var(--sidebar);color:#fff;border-radius:var(--radius);
-    padding:18px 14px;max-height:calc(100vh - 110px);overflow:auto;transition:.2s;
+    background:var(--sidebar);color:#fff;border-radius:var(--radius);
+    padding:18px 14px;transition:.2s;align-self:stretch;
   }
+  .side-inner{position:sticky;top:88px}
   .side-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 6px 14px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px}
   .side-cat{font-family:'Bricolage Grotesque';font-weight:700;font-size:1.02rem;white-space:nowrap;overflow:hidden}
   .side-toggle{background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:8px;cursor:pointer;flex:none;font-size:1rem;transition:.15s}
@@ -167,8 +168,13 @@
   .issue .fix pre{font-family:'IBM Plex Sans';white-space:pre-wrap;line-height:1.55}
   .issue .row-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
   .issue .date{font-size:.78rem;color:var(--ink-soft);font-family:'IBM Plex Mono'}
+  .issue-actions{display:flex;gap:14px;align-items:center}
+  .edit{background:none;border:none;color:var(--accent-deep);font-size:.82rem;cursor:pointer;font-family:inherit;font-weight:600}
+  .edit:hover{text-decoration:underline}
   .del{background:none;border:none;color:#b04a3a;font-size:.82rem;cursor:pointer;font-family:inherit;font-weight:600}
   .del:hover{text-decoration:underline}
+  .btn-cancel-edit{width:100%;margin-top:9px;background:none;border:1px solid var(--line);color:var(--ink-soft);font-family:inherit;font-weight:600;font-size:.9rem;padding:10px;border-radius:11px;cursor:pointer;transition:.15s}
+  .btn-cancel-edit:hover{border-color:var(--accent);color:var(--accent-deep)}
 
   footer{border-top:1px solid var(--line);margin-top:30px}
   .foot-inner{max-width:1240px;margin:0 auto;padding:26px 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--ink-soft);font-size:.85rem}

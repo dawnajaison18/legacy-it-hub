@@ -69,11 +69,13 @@
       <button class="topic-back" onclick="showCats()">&larr; All categories</button>
       <div class="learn-shell" id="learn-shell">
         <aside class="side">
-          <div class="side-top">
-            <span class="side-cat" id="side-cat-name">Category</span>
-            <button class="side-toggle" id="side-toggle" onclick="toggleSidebar()" title="Collapse / expand">&#9776;</button>
+          <div class="side-inner">
+            <div class="side-top">
+              <span class="side-cat" id="side-cat-name">Category</span>
+              <button class="side-toggle" id="side-toggle" onclick="toggleSidebar()" title="Collapse / expand">&#9776;</button>
+            </div>
+            <ul id="side-list"></ul>
           </div>
-          <ul id="side-list"></ul>
         </aside>
         <article class="content" id="topic-content"></article>
       </div>
