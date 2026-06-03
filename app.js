@@ -55,8 +55,13 @@ function openTopic(key,id){
   const imgMap=(typeof STEP_IMAGES!=='undefined'&&STEP_IMAGES[id])||[];
   const steps=t.steps.map((s,idx)=>{
     const o=typeof s==='string'?{text:s}:s;
-    const img=o.img||imgMap[idx];
-    return `<li>${o.text}${img?`<img class="step-img" src="${img}" alt="" loading="lazy" onclick="window.open(this.src,'_blank')">`:''}${o.note?`<div class="note">💡 ${o.note}</div>`:''}</li>`;
+    let img=o.img||imgMap[idx];
+    let imgHtml='';
+    if(img){
+      const arr=Array.isArray(img)?img:[img];
+      imgHtml=arr.map(src=>`<img class="step-img" src="${src}" alt="" loading="lazy" onclick="window.open(this.src,'_blank')">`).join('');
+    }
+    return `<li>${o.text}${imgHtml}${o.note?`<div class="note">💡 ${o.note}</div>`:''}</li>`;
   }).join('');
   document.getElementById('topic-content').innerHTML=`
     <span class="crumb">${c.name}</span>
