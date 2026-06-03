@@ -53,11 +53,13 @@ function openTopic(key,id){
   const c=DATA[key], t=c.topics.find(x=>x.id===id);
   document.querySelectorAll('#side-list button').forEach(b=>b.classList.toggle('active',b.dataset.t===id));
   const imgMap=(typeof STEP_IMAGES!=='undefined'&&STEP_IMAGES[id])||[];
+  let hasImg=false;
   const steps=t.steps.map((s,idx)=>{
     const o=typeof s==='string'?{text:s}:s;
     let img=o.img||imgMap[idx];
     let imgHtml='';
     if(img){
+      hasImg=true;
       const arr=Array.isArray(img)?img:[img];
       imgHtml=arr.map(it=>{
         const src=typeof it==='string'?it:it.src;
@@ -72,7 +74,7 @@ function openTopic(key,id){
     <span class="crumb">${c.name}</span>
     <h1>${t.title}</h1>
     <p class="lead">${t.lead}</p>
-    <h2 class="step-h">Step-by-step</h2>
+    <h2 class="step-h">Step-by-step${hasImg?` <span class="zoom-hint">🔍 click any image to enlarge</span>`:''}</h2>
     <ol class="steps">${steps}</ol>`;
   window.scrollTo({top:0,behavior:'smooth'});
 }
