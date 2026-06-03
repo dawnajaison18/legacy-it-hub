@@ -104,12 +104,12 @@ const DATA = {
         lead:"Expand, edit, remove members from, or inactivate an existing patient group.",
         steps:[
           {text:"Use the icons next to each group to manage it: the <b>Plus (+)</b> expands and shows all members, the <b>purple Edit Pencil (✎)</b> edits the group or adds members, and the <b>red X (✕)</b> inactivates the group.", img:"images/insync-mg-icons.png"},
-          {text:"<b>To remove a patient</b> — click the <b>Expand (+)</b> icon on the left of the group name to display all patients currently in the group.", img:"images/insync-mg-expand.png"},
-          {text:"Click the <b>Inactivate Patient from Group</b> icon next to the patient you want to remove, then click <b>Yes</b> on the confirmation pop-up.", img:"images/insync-mg-removeconfirm.png"},
+          {text:"<b>To remove a patient</b> — click the <b>Expand (+)</b> icon on the left of the group name to display all patients currently in the group.", img:"images/insync-mg-removeconfirm.png"},
+          {text:"Click the <b>Inactivate Patient from Group</b> icon next to the patient you want to remove, then click <b>Yes</b> on the confirmation pop-up.", img:["images/insync-mg-removeconfirm.png","images/insync-mg-expand.png"]},
           {text:"A <b>\"Patient Removed Successfully\"</b> message appears at the top of the screen.", img:"images/insync-mg-removed.png"},
           {text:"<b>To edit the group or add members</b> — expand the group with <b>(+)</b>, click the <b>Edit Group (✎)</b> icon next to the group name, make your changes on the Patient Group details page, then click <b>Update</b>.", img:"images/insync-mg-editscreen.png"},
           {text:"A <b>\"Patient Group Updated Successfully\"</b> message appears at the top of the screen.", img:"images/insync-mg-editsuccess.png"},
-          {text:"<b>To edit one patient's record</b> — expand the group, click the <b>Edit (✎)</b> icon on that patient's row to expand it, change the details, then click the <b>Tick (✔)</b> to save, or the <b>Cross (✖)</b> to discard.", img:["images/insync-mg-editpatient-1.png","images/insync-mg-editpatient-2.png"]},
+          {text:"<b>To edit one patient's record</b> — expand the group, click the <b>Edit (✎)</b> icon on that patient's row to expand it, change the details, then click the <b>Tick (✔)</b> to save, or the <b>Cross (✖)</b> to discard.", img:["images/insync-mg-editpatient-1.png",{src:"images/insync-mg-editpatient-2.png",lg:true}]},
         ]},
 
       { id:"insync-schedule-group", title:"Scheduling a Group Appointment",

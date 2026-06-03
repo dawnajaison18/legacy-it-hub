@@ -59,7 +59,12 @@ function openTopic(key,id){
     let imgHtml='';
     if(img){
       const arr=Array.isArray(img)?img:[img];
-      imgHtml=arr.map(src=>`<img class="step-img" src="${src}" alt="" loading="lazy" onclick="window.open(this.src,'_blank')">`).join('');
+      imgHtml=arr.map(it=>{
+        const src=typeof it==='string'?it:it.src;
+        const big=(typeof it==='object'&&it.lg);
+        const tag=`<img class="step-img" src="${src}" alt="" loading="lazy" onclick="window.open(this.src,'_blank')">`;
+        return big?`<div class="step-img-wide">${tag}</div>`:tag;
+      }).join('');
     }
     return `<li>${o.text}${imgHtml}${o.note?`<div class="note">💡 ${o.note}</div>`:''}</li>`;
   }).join('');
