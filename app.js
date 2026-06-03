@@ -62,7 +62,7 @@ function openTopic(key,id){
       imgHtml=arr.map(it=>{
         const src=typeof it==='string'?it:it.src;
         const big=(typeof it==='object'&&it.lg);
-        const tag=`<img class="step-img" src="${src}" alt="" loading="lazy" onclick="window.open(this.src,'_blank')">`;
+        const tag=`<img class="step-img" src="${src}" alt="" loading="lazy" onclick="openLightbox(this.src)">`;
         return big?`<div class="step-img-wide">${tag}</div>`:tag;
       }).join('');
     }
@@ -180,6 +180,26 @@ function updateStats(){
   document.getElementById('stat-cats').textContent=Object.keys(DATA).length;
   document.getElementById('stat-topics').textContent=tc;
   document.getElementById('stat-issues').textContent=loadIssues().length;
+}
+
+/* ---------------- IMAGE LIGHTBOX ---------------- */
+function openLightbox(src){
+  let ov=document.getElementById('lightbox');
+  if(!ov){
+    ov=document.createElement('div');
+    ov.id='lightbox';
+    ov.innerHTML='<span class="lb-close" title="Close">&times;</span><img alt="">';
+    ov.addEventListener('click',function(e){ if(e.target.tagName!=='IMG') closeLightbox(); });
+    document.body.appendChild(ov);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLightbox(); });
+  }
+  ov.querySelector('img').src=src;
+  ov.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  const ov=document.getElementById('lightbox');
+  if(ov){ ov.classList.remove('open'); document.body.style.overflow=''; }
 }
 
 /* ---------------- INIT ---------------- */
