@@ -49,10 +49,13 @@ function buildSidebar(key){
       html+=`<li class="side-group"><button class="side-group-btn" onclick="openTopic('${key}','${t.id}')">${g}</button></li>`;
     }
     lastGroup=g;
-    const sub=g?' side-sub':'';
-    const label=t.short||t.title;
-    html+=`<li><button class="${sub}" data-t="${t.id}" onclick="openTopic('${key}','${t.id}')">
-       <span class="dot"></span><span class="txt">${label}</span></button></li>`;
+    if(g){
+      html+=`<li><button class="side-sub" data-t="${t.id}" onclick="openTopic('${key}','${t.id}')">
+         <span class="dot"></span><span class="txt">${t.short||t.title}</span></button></li>`;
+    } else {
+      html+=`<li class="side-main-li"><button class="side-group-btn side-main" data-t="${t.id}" onclick="openTopic('${key}','${t.id}')">
+         <span class="dot"></span><span class="txt">${t.title}</span></button></li>`;
+    }
   });
   document.getElementById('side-list').innerHTML=html;
 }
