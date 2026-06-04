@@ -120,7 +120,7 @@
     padding:8px 12px 6px;border-bottom:1px solid rgba(255,255,255,.12);border-radius:0;
   }
   .side li button.side-group-btn:hover{color:#fff;background:none}
-  .side li button.side-group-btn.active{color:#fff;background:none}
+  .side li button.side-group-btn.active{color:var(--gold);background:rgba(255,255,255,.06)}
   .side-main .dot{display:none}
   .side li button.side-sub{padding-left:24px;font-size:.86rem}
   .side li button.side-sub .dot{opacity:.4}
