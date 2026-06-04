@@ -252,6 +252,251 @@ const DATA = {
           {text:"A warning pop-up appears explaining the action can't be reversed. Click <b>Merge</b> on the pop-up to confirm.", img:{src:"images/merge-5.png",lg:true}, note:"This is irreversible — double-check all selections before confirming."},
           {text:"A green <b>\"Patient details merged successfully\"</b> banner appears. The Source record is now inactive and its data is in the Target record.", img:{src:"images/merge-6.png",lg:true}, note:"Document the merge in the case notes for the audit trail."},
         ]},
+
+      { id:"insync-pr-add", title:"Adding a Provider", group:"Provider & Roles", short:"Adding a Provider",
+        lead:"Create a new provider record in InSync, from Admin → Resource Management through to saving the login.",
+        steps:[
+          {text:"Click the <b>Admin</b> bookmark and open the <b>Resource Management</b> tab. Make sure the <b>Resource Type</b> dropdown is set to <b>Provider</b> before entering anything.", img:["images/pr-addprov-1a.png","images/pr-addprov-1b.png","images/pr-addprov-1c.png"]},
+          {text:"In <b>Personal Details</b>, enter the provider's First Name, Last Name, and Suffix, the Date of Birth, and set <b>InSync License</b> to Yes or No as applicable.", img:"images/pr-addprov-2.png"},
+          {text:"The full form shows the <b>Identification Numbers</b>, <b>Specialties/Facilities</b>, and <b>Login/Digital Signature</b> sections that must be completed before saving.", img:"images/pr-addprov-3.png", note:"Assign at least one Facility and click the ★ star to set the Preferred Login Facility before saving."},
+          {text:"In <b>Contact Details</b>, enter the address/phone/email (or check <b>Keep it same as Practice Business Address</b>). In <b>Identification Numbers</b>, enter the <b>NPI Code</b> and <b>Employment Type</b> (both required). In <b>Specialties/Facilities</b>, check the facilities and set the ★ Preferred Login Facility. In <b>Login/Digital Signature</b>, set a Username, assign a Role, create a 4-digit EPIN, and add a Signature. Then click <b>Save</b>.", img:"images/pr-addprov-4.png", note:"Best practice: Username = first initial + last name (e.g., JSmith)."},
+        ]},
+
+      { id:"insync-pr-sig", title:"Digital Signature Setup", group:"Provider & Roles", short:"Digital Signature",
+        lead:"Capture a provider's digital signature, used to sign encounter notes.",
+        steps:[
+          {text:"In the top-left <b>Smart Search</b> box, type <b>Resource</b> and select <b>Resource in Administration</b>.", img:"images/pr-sig-1.png"},
+          {text:"On the Resource Management page, search the provider in the <b>Resource Name</b> field and click the <b>Edit icon</b> next to their name — their saved info loads into all fields.", img:"images/pr-sig-2.png"},
+          {text:"Scroll to the <b>Login / Digital Signature</b> section and click the <b>Capture Signature</b> button (pen icon) next to the E-Signature field.", img:"images/pr-sig-3.png", note:"Only ONE signature is allowed per user — once saved, admin access is needed to change it."},
+          {text:"<b>Manual tab</b> — draw the signature with a mouse or stylus, then click <b>Accept</b>.", img:"images/pr-sig-4.png"},
+          {text:"<b>Manual tab (upload)</b> — click <b>Browse</b>, select a saved <b>.jpg</b> signature file, click Open, then <b>Accept</b>.", img:"images/pr-sig-5.png", note:"Only .jpg files are accepted."},
+          {text:"<b>Type tab</b> — type the provider's legal name, pick a font style, preview it, then click <b>Accept</b>.", img:"images/pr-sig-6.png"},
+          {text:"<b>Initials tab</b> — initials are auto-generated; use <b>Change Style</b> to pick a font, then <b>Accept</b>. Always click <b>Save</b> on the main provider page afterwards.", img:"images/pr-sig-7.png"},
+        ]},
+
+      { id:"insync-pr-epin", title:"EPIN Setup", group:"Provider & Roles", short:"EPIN Setup",
+        lead:"The EPIN is a four-digit code providers use to close and submit encounter notes.",
+        steps:[
+          {text:"Type <b>Resource</b> in Smart Search and select <b>Resource in Administration</b>, click the <b>Edit icon</b> for the provider, scroll to the <b>Login / Digital Signature</b> section, enter the four-digit <b>EPIN</b>, and click <b>Save</b>.", img:"images/pr-epin-1.png", note:"The default EPIN for all users is 1111 — update each provider right after setup if unique EPINs are required."},
+        ]},
+
+      { id:"insync-pr-edit", title:"Editing a Provider", group:"Provider & Roles", short:"Editing a Provider",
+        lead:"Configure credentials, license, co-signature, and service-provider billing on an existing provider.",
+        steps:[
+          {text:"In <b>Credential Details</b>, pick a <b>Credential Type</b> (e.g., APRN, MSW, RN, MD/DO). To create a new one, click the <b>Configure Credential Type</b> icon. Set an <b>Alert Before</b> reminder for credential expiry.", img:"images/pr-edit-1.png"},
+          {text:"In the <b>Configure Credential Type</b> window, complete the required fields and click <b>Add</b> — the new type appears in the dropdown immediately.", img:"images/pr-edit-2.png"},
+          {text:"Configure the <b>License Type</b>, <b>Co-Signature</b> rules, and <b>Service Provider</b> settings as needed, then click <b>Save</b>.", img:"images/pr-edit-3.png", note:"Changes aren't retained until you click Save."},
+          {text:"<b>Co-Signature</b> defines which encounter types need a co-signer. Use the <b>+</b> icon to add rules, or Edit/Delete to change them.", img:"images/pr-edit-4.png"},
+          {text:"<b>Service Provider</b> — check the box, define the <b>Payer</b>, <b>Default Provider</b>, and <b>Encounter Type</b>, click <b>Add</b> (multiple allowed), then <b>Save</b>.", img:"images/pr-edit-5.png"},
+        ]},
+
+      { id:"insync-pr-lock", title:"Locking a Provider", group:"Provider & Roles", short:"Locking a Provider",
+        lead:"Lock a provider's account to block them from logging in. Reversible by an authorized administrator.",
+        steps:[
+          {text:"In <b>Resource Management</b>, find the provider and click the <b>Click to lock the account</b> icon. A confirmation dialog appears.", img:"images/pr-lock-1.png", note:"The provider can't log in until an authorized user unlocks the account."},
+          {text:"Select a <b>Lock Reason</b> (required; use the gear icon to add a new reason), add a <b>Lock Comment</b>, choose <b>To Do Recipient(s)</b> to notify, then click <b>Lock</b>.", img:"images/pr-lock-2.png"},
+        ]},
+
+      { id:"insync-pr-roles", title:"Roles & Permissions", group:"Provider & Roles", short:"Roles & Permissions",
+        lead:"Assign Add / Edit / View / Delete permissions to a role, per module.",
+        steps:[
+          {text:"Click the <b>Select Role</b> dropdown and choose the role to configure. Click <b>View Users</b> to see everyone assigned to that role.", img:["images/pr-roles-1a.png","images/pr-roles-1b.png"]},
+          {text:"Select a <b>module</b> from the left panel (Setup, Security, Billing, etc.). For each function, tick the permissions the role gets — <b>Add, Edit, View, Delete</b> — or use <b>Give full access</b> / <b>Remove all access</b>, then click <b>Save</b>.", note:"Permissions save per module — click Save after each module, not once for the whole role."},
+          {text:"The permissions grid shows every function in the module with checkboxes for Add, Edit, Delete, View, and Personalize. Use the top-right Search to find a function across modules.", img:"images/pr-roles-2.png"},
+        ]},
+
+      { id:"insync-pr-allmod", title:"All Modules View", group:"Provider & Roles", short:"All Modules View",
+        lead:"See and manage every module's permissions on one page, and audit changes.",
+        steps:[
+          {text:"Check the <b>Modules</b> checkbox on the left to show all modules and functions together. Use the top-right <b>Search</b> to find any function, and the <b>History</b> icon to view changes.",},
+          {text:"With the Modules checkbox on, all modules and their functions appear in one scrollable view.", img:"images/pr-allmod-1.png"},
+          {text:"The <b>History</b> panel records every permission change with the user's name and a timestamp — useful for auditing.", img:"images/pr-allmod-2.png"},
+        ]},
+
+      { id:"insync-pr-copy", title:"Copy Permissions", group:"Provider & Roles", short:"Copy Permissions",
+        lead:"Create a new role quickly by copying permissions from an existing one.",
+        steps:[
+          {text:"Click the <b>Configure Role</b> icon on the Select Role dropdown. Enter the new <b>Role</b> name and description, use <b>Copy From</b> to pick an existing role, then click <b>Save</b>.", img:["images/pr-copy-1a.png","images/pr-copy-1b.png"]},
+          {text:"Select the new role, go through each module to add or remove permissions, and click <b>Save</b> after each module. Assign users by editing their record and updating the Role field.", note:"Always review each module after copying to confirm the new role has exactly the access required."},
+        ]},
+
+      { id:"insync-npp-cosig", title:"Co-Signature Configuration", group:"New Provider Permissions (IT)", short:"Co-Signature",
+        lead:"Part of the new-hire setup run every time a provider is hired — link the new provider to their supervisor's encounter types.",
+        steps:[
+          {text:"Use <b>Quick Search</b> to open <b>Co-Signature in Administration</b> and expand the search ribbon.", img:"images/npp-cosig-1.png"},
+          {text:"In the <b>Co-Sign Req To</b> field, search the supervisor's name. Their encounter types populate below — select the one for the new provider and click the <b>Edit icon</b>.", img:"images/npp-cosig-2.png"},
+          {text:"Under <b>Co-Signature</b> at the top, check the box next to the newly hired provider's name and click <b>Save</b>.", img:"images/npp-cosig-3.png"},
+        ]},
+
+      { id:"insync-npp-svc", title:"Service Provider Configuration", group:"New Provider Permissions (IT)", short:"Service Provider",
+        lead:"New-hire setup: configure billing submission under the co-sign recipient.",
+        steps:[
+          {text:"Go to <b>Admin → Resource Management</b>, search for the new provider, click the <b>Edit icon</b>, and scroll to the <b>Service Provider</b> section.", img:"images/npp-svc-1.png"},
+          {text:"Check the <b>Service Provider</b> box, pick the <b>Default Provider</b> (the co-sign recipient) under whom billing is submitted, click <b>Add</b>, then <b>Save</b>.", img:"images/npp-svc-2.png"},
+          {text:"The Front Desk Coordinator should have all service providers with the <b>Vitals</b> encounter type added to their profile.", img:"images/npp-svc-3.png"},
+        ]},
+
+      { id:"insync-npp-sched", title:"Scheduler Setup", group:"New Provider Permissions (IT)", short:"Scheduler Setup",
+        lead:"New-hire setup: create the provider's scheduler by copying an existing profile.",
+        steps:[
+          {text:"Use <b>Quick Search</b> to open <b>Scheduler Setup</b>, click <b>Create New Scheduler Profile</b>, type a <b>Profile Name</b> (based on the provider's role), and click the <b>Copy icon</b>.", img:["images/npp-sched-1a.png","images/npp-sched-1b.png","images/npp-sched-1c.png"]},
+          {text:"Set the <b>Source</b> (usually the most recently hired provider) and the <b>Destination</b> (the new provider), check <b>Copy Available Time Slots</b>, then click <b>Copy</b>.", img:"images/npp-sched-2.png"},
+          {text:"Click the <b>Expand</b> icon on the new scheduler, click <b>Edit</b>, set the slot <b>duration to 1 minute</b>, and click <b>Save Scheduler</b>.", img:"images/npp-sched-3.png"},
+        ]},
+
+      { id:"insync-npp-rights", title:"Manage Rights", group:"New Provider Permissions (IT)", short:"Manage Rights",
+        lead:"New-hire setup: copy and assign scheduler access rights for the new provider.",
+        steps:[
+          {text:"In Scheduler Setup, click <b>Manage Rights</b>. On the <b>Resources</b> tab, click the <b>Copy icon</b> to copy scheduler permission from one resource to another.", img:["images/npp-rights-1a.png","images/npp-rights-1b.png"]},
+          {text:"In the <b>Copy Scheduler Permission</b> dialog: <b>Copy From</b> = most recently hired provider, <b>Copy To</b> = new provider, check <b>Copy Rights Who Can Access Source</b>, click <b>Copy</b>, then <b>Save</b>.", img:"images/npp-rights-2.png"},
+          {text:"On the <b>Schedulers</b> tab, select the new provider, remove the inherited Edit/Delete permissions, grant the new Edit/Delete permissions, and click <b>Save</b>.", img:"images/npp-rights-3.png"},
+        ]},
+
+      { id:"insync-npp-practice", title:"Practice Configuration", group:"New Provider Permissions (IT)", short:"Practice Configuration",
+        lead:"New-hire setup: timely alerts, dashboard provider selection, encounter permissions, and eRx.",
+        steps:[
+          {text:"Use <b>Quick Search</b> to open <b>Practice in Administration</b> and click <b>Practice Configuration</b> in the bottom-right.", img:["images/npp-practice-1a.png","images/npp-practice-1b.png"]},
+          {text:"Search <b>Set Timely Alert to Complete Encounter Note</b>, click the <b>Edit icon</b> on the encounter type, select the new provider from the <b>Provider</b> dropdown, click <b>Update</b>, then <b>Save</b>.", img:"images/npp-practice-2.png"},
+          {text:"Search <b>Disable Provider Selection in Dashboard – Co-Sign List & Encounter List</b>, select the new provider from the <b>Disable for Provider</b> dropdown, and click <b>Save</b>.", img:"images/npp-practice-3.png"},
+          {text:"Search <b>Allow Changing Ended Encounter to In Progress Encounter</b> and adjust as needed, then click <b>Save</b>.", img:"images/npp-practice-4.png", note:"This setting applies to the supervisor, not the new provider."},
+          {text:"<b>e-Prescription (eRx)</b> — open e-Prescription in the Practice Level Configuration, expand <b>Configure eRx Roles</b>, assign the required roles/permissions, and click <b>Save</b>.", img:"images/npp-practice-5.png", note:"Applies to Doctors, Nurses, Restricted Nurses, Mid-Level Prescribers, and Med Assistants."},
+        ]},
+
+      { id:"insync-npp-docmgr", title:"Document Manager Permissions", group:"New Provider Permissions (IT)", short:"Document Manager",
+        lead:"New-hire setup: copy document access privileges from the most recently hired provider.",
+        steps:[
+          {text:"Open <b>Document Manager</b>, click <b>Assign Permission</b>, then at the bottom click <b>Copy Privileges</b>.", img:["images/npp-docmgr-1a.png","images/npp-docmgr-1b.png"]},
+          {text:"Set <b>Privileges From</b> = most recently hired provider and <b>Privileges To</b> = new provider, click <b>Apply</b>, then <b>Save</b>. A success message confirms it.", img:"images/npp-docmgr-2.png"},
+        ]},
+
+      { id:"insync-ppf-add", title:"Adding Patients to the Portal", group:"Patient Portal & Forms", short:"Adding to the Portal",
+        lead:"Give a patient access to the online Patient Portal and send their intake forms.",
+        steps:[
+          {text:"Click the <b>Patient Search</b> bookmark and search by First Name, Last Name, DOB, MRN, or SSN.", img:"images/ppf-add-1.png"},
+          {text:"Click the purple <b>Edit icon</b> on the left of the patient's row to open their full profile.", img:"images/ppf-add-2.png"},
+          {text:"Scroll to <b>Patient Delegates and Portal Access</b> and check <b>Enable Portal Login for Patient</b> — the Username auto-fills with the patient's email.", img:"images/ppf-add-3.png", note:"Email, Mobile Number, and Primary Provider are required before enabling the portal."},
+          {text:"To send forms now, check the <b>Patient Forms</b> checkbox and pick the forms to send from the dropdown.", img:"images/ppf-add-4.png"},
+          {text:"In <b>Contact Details</b>, confirm the <b>Email</b> (used as the username) and <b>Mobile Number</b> (used for the OTP) are filled, with the correct Country.", img:"images/ppf-add-5.png", note:"A missing Email or Mobile Number will prevent OTP delivery."},
+          {text:"(Optional) To give a family member or representative access, use <b>Additional Portal Login</b> — choose the Delegate Type, fill in their details, and click <b>Add</b>.", img:"images/ppf-add-6.png", note:"The patient must be saved before you can add delegates."},
+          {text:"Scroll to the bottom and click <b>Save</b> — the system validates the required fields and generates a temporary password.", img:"images/ppf-add-7.png"},
+          {text:"A confirmation appears with the patient's <b>Username</b> and <b>Temporary Password</b>, and the patient receives an email with the portal link.", img:"images/ppf-add-8.png", note:"The activation link expires in 72 hours; if it expires, the practice can re-send a new one."},
+        ]},
+
+      { id:"insync-ppf-access", title:"Accessing Patient Forms", group:"Patient Portal & Forms", short:"Accessing Forms",
+        lead:"Open the Patient Forms module and preview the available forms.",
+        steps:[
+          {text:"In <b>Quick Search</b>, type <b>patient forms</b> and select <b>Patient Forms in Patients</b>. You can also add it as a bookmark via Configure User Profile → Bookmarks → General.", img:["images/ppf-access-1.png","images/ppf-access-1b.png"]},
+          {text:"The module has two sections: <b>Manage Forms</b> (search/view sent forms) and <b>Schedule / Send New Patient Form</b>. Expand the latter to reveal the New Patient Form and Search bars.", img:"images/ppf-access-2.png"},
+          {text:"Click the grey <b>New Patient Form</b> bar to list all configured forms, grouped by category. Click a form title to preview it before sending.", img:"images/ppf-access-3.png"},
+        ]},
+
+      { id:"insync-ppf-onfly", title:"Sending Forms On-the-Fly", group:"Patient Portal & Forms", short:"Send On-the-Fly",
+        lead:"Send forms to specific patients (or all portal patients) right now.",
+        steps:[
+          {text:"Check the form(s) to send, then type the patient's name in the <b>Patient</b> field and select them from the dropdown.", img:"images/ppf-onfly-1.png", note:"Only patients with an active portal appear here. If a patient is missing, enable their portal access first."},
+          {text:"In <b>To Do Recipient</b>, select the staff member or group to be notified when the form is completed, tick <b>Include Primary Provider</b> if needed, and click <b>Add</b>.", img:"images/ppf-onfly-2.png"},
+          {text:"Review the Selected Patients and recipient, make sure <b>Send Email</b> is checked, then click <b>Save</b> — forms go to the patients' portals immediately.", img:"images/ppf-onfly-3.png"},
+          {text:"<b>To send to all portal patients</b> — check the form, tick <b>Send to all Existing Patients</b> (patient fields grey out), set the To Do Recipient, and click <b>Save</b>.", img:"images/ppf-onfly-4.png", note:"Use this only when a form must go to your entire active portal population."},
+        ]},
+
+      { id:"insync-ppf-sched", title:"Scheduled & Action-Triggered Forms", group:"Patient Portal & Forms", short:"Scheduled & Action Forms",
+        lead:"Automate form delivery on a recurring schedule or when a system action happens.",
+        steps:[
+          {text:"<b>On a schedule</b> — open <b>Send Forms based on a pre-configured schedule</b>, set the frequency (Daily/Weekly/Monthly/Yearly) and recurrence, the Start Date, the patient, the To Do Recipient, then click <b>Save</b>.", img:"images/ppf-sched-1.png", note:"Set Auto Expire if Not Submitted to expire forms the patient hasn't completed within a set number of days."},
+          {text:"Use the grey <b>Search</b> bar to find saved schedules by patient, provider, or date. Edit or inactivate any schedule from the results.", img:"images/ppf-sched-2.png"},
+          {text:"Click the <b>(i) icon</b> on a schedule row to expand its details — Patient, Action, Effective Start Date, End Date, and other settings.", img:"images/ppf-sched-3.png"},
+          {text:"<b>On an action</b> — open <b>Send Forms based on a user performed action</b>, pick the trigger (e.g., Registering a new patient), set the Effective Start Date and Primary Provider, set the To Do Recipient, and click <b>Save</b>.", img:"images/ppf-sched-4.png"},
+        ]},
+
+      { id:"insync-ppf-manage", title:"Managing Forms", group:"Patient Portal & Forms", short:"Managing Forms",
+        lead:"Search, review, edit, retrieve, and track patient forms after they're sent.",
+        steps:[
+          {text:"In <b>Manage Forms</b>, type the patient's name in the Patient field (wait a few seconds), select them, uncheck <b>Show only filled forms</b> to see everything, and click <b>Search</b>.", img:"images/ppf-manage-1.png"},
+          {text:"Narrow results with the <b>Form</b>, <b>Category</b>, <b>Sent From</b> date, and <b>Status</b> filters (Sent, Received, Reviewed, Expired, etc.), then click <b>Search</b>.", img:"images/ppf-manage-2.png"},
+          {text:"In the results, use the <b>View</b> icon for a read-only copy, the <b>View and Edit</b> icon to make corrections, and the other icons for delegate details or history.", img:"images/ppf-manage-3.png"},
+          {text:"<b>To retrieve a sent form</b> — tick its checkbox and click <b>Retrieve</b> at the top, enter a <b>Retrieve Reason</b> in the pop-up, and click <b>Save</b>.", img:["images/ppf-manage-4.png","images/ppf-manage-4b.png"]},
+          {text:"All completed forms are also stored in the patient's <b>Document Manager</b> — click the patient's name, hover over <b>Facesheet</b>, and click <b>Go to Facesheet</b>.", img:["images/ppf-manage-5.png","images/ppf-manage-5b.png"]},
+          {text:"<b>View and Edit</b> — click the icon on a form row, make changes, then tick <b>Send To Do and Attach Current Document</b> and pick the recipient.", img:"images/ppf-manage-6.png"},
+          {text:"The recipient gets a To Do notification; opening it shows the To Do detail page, where they can view the form, download the document, update the status, reply, or forward.", img:["images/ppf-manage-7.png","images/ppf-manage-7b.png"]},
+        ]},
+
+      { id:"insync-paf-add", title:"Adding Patients to the Portal", group:"Patient Access & Forms", short:"Adding to the Portal",
+        lead:"Enable a patient's portal access and send their forms (quick version).",
+        steps:[
+          {text:"Click the <b>Patient Search</b> bookmark and search by name, DOB, MRN, or SSN.", img:"images/paf-add-1.png"},
+          {text:"Click the purple <b>Edit icon</b> on the left of the patient's row to open their profile.", img:"images/paf-add-2.png"},
+          {text:"Scroll to <b>Patient Delegates and Portal Access</b> and check <b>Enable Portal Login for Patient</b> — the Username fills with the patient's email.", img:"images/paf-add-3.png", note:"Email, Mobile Number, and Primary Provider must be filled first."},
+          {text:"Check the <b>Patient Forms</b> box and choose the forms to send from the dropdown.", img:"images/paf-add-4.png"},
+          {text:"In <b>Contact Details</b>, confirm the <b>Email</b> and <b>Mobile Number</b> are filled (required for login and OTP).", img:"images/paf-add-5.png"},
+          {text:"(Optional) Add a family member or representative under <b>Additional Portal Login</b> — choose the Delegate Type, fill in their details, and click <b>Add</b>.", img:"images/paf-add-6.png"},
+          {text:"Scroll down and click <b>Save</b>.", img:"images/paf-add-7.png"},
+          {text:"A confirmation shows the patient's <b>Username</b> and <b>Temporary Password</b>, and the patient receives an email with the portal link.", img:"images/paf-add-8.png", note:"The activation link expires in 72 hours."},
+        ]},
+
+      { id:"insync-paf-forms", title:"Managing & Sending Forms", group:"Patient Access & Forms", short:"Managing & Sending",
+        lead:"Send, schedule, and manage patient forms (quick version).",
+        steps:[
+          {text:"Open the module via <b>Quick Search → Patient Forms in Patients</b>, or the bookmark in the sidebar.", img:"images/paf-forms-1.png"},
+          {text:"In <b>Manage Forms</b>, filter by patient, provider, status, form, category, or date, then click <b>Search</b>. Use the magnifying glass to view a form, or <b>View & Edit</b> to correct one.", img:"images/paf-forms-2.png"},
+          {text:"To send a new form, expand <b>Schedule / Send New Patient Form</b>, then open the grey <b>New Patient Form</b> subsection.", img:"images/paf-forms-3.png"},
+          {text:"Use the <b>Search Form</b> field or <b>Select Category</b> to find forms, then tick the box next to each form you want to send.", img:"images/paf-forms-4.png"},
+          {text:"In the <b>Patient</b> field, search and select the patient(s) — they appear in the Selected Patients panel. Use the red X to remove one.", img:"images/paf-forms-5.png", note:"If a patient doesn't appear, they don't have portal access yet — enable it first."},
+          {text:"Set the delivery options — Primary Provider, Facility, Payer, Program — check <b>Send Email</b>, choose a <b>To Do Recipient</b>, and click <b>Save</b>.", img:"images/paf-forms-6.png"},
+          {text:"<b>On a schedule</b> — expand <b>Send Forms based on a pre-configured schedule</b>, choose the frequency, and set the recurrence rule.", img:"images/paf-forms-7.png"},
+          {text:"Complete the schedule fields — Start Date, Patient Group, Provider, Program, Send Email, To Do Recipient — and click <b>Save</b>.", img:"images/paf-forms-8.png", note:"Auto Expire if Not Submitted expires the form after a set number of days."},
+          {text:"<b>On an action</b> — in <b>Send Forms based on a user performed action</b>, pick the trigger (e.g., Registering a new patient), set the Effective Start Date, provider, and recipient, then click <b>Save</b>.", img:"images/paf-forms-9.png"},
+        ]},
+
+      { id:"insync-pg-login", title:"First-Time Login", group:"Patient Portal — Patient Guide", short:"First-Time Login",
+        lead:"What the patient does to log in for the first time using the credentials emailed to them.",
+        steps:[
+          {text:"Open the portal link from the confirmation email, enter the <b>Email Address</b> (username) and the <b>Temporary Password</b> (case-sensitive), and click <b>Sign In</b>.", img:"images/pg-login-1.png", note:"If the patient forgot the temporary password, they can use 'Forgot Password?' on the login screen."},
+          {text:"Verify identity — enter the <b>Date of Birth</b> (MM/DD/YYYY) and the registered <b>Mobile Number</b>, then click <b>Proceed to Login</b>.", img:"images/pg-login-2.png", note:"Both must exactly match what's on file in InSync."},
+          {text:"Enter the 6-digit <b>OTP</b> sent to the patient's email and mobile, then click <b>Verify OTP</b>. If it expired, click the resend icon.", img:"images/pg-login-3.png"},
+          {text:"Create a permanent password (at least 8 characters, with 1 uppercase, 1 number, and 1 special character), confirm it, and click <b>Submit</b>.", img:"images/pg-login-4.png"},
+          {text:"Back on the login page, sign in with the email and the new permanent password to reach the dashboard.", img:"images/pg-login-5.png"},
+        ]},
+
+      { id:"insync-pg-dash", title:"Dashboard", group:"Patient Portal — Patient Guide", short:"Dashboard",
+        lead:"The patient's home page after login.",
+        steps:[
+          {text:"The dashboard shows Messages, Education Material, Upcoming Appointments, and an Account Summary, with the left sidebar linking to every section.", img:"images/pg-dash-1.png"},
+          {text:"The <b>Upcoming Appointments</b> panel lists future bookings with date, time, visit type, and status; click <b>View More</b> for the full schedule.", img:"images/pg-dash-2.png", note:"To book or cancel appointments, the patient contacts the practice — booking isn't done in the portal."},
+        ]},
+
+      { id:"insync-pg-profile", title:"My Profile", group:"Patient Portal — Patient Guide", short:"My Profile",
+        lead:"Where the patient manages personal info, insurance, pharmacy, and communication preferences.",
+        steps:[
+          {text:"<b>Primary Info</b> — expand each ribbon (My Details, Contact, Employer/School, Saved Cards, Emergency Contact) to update it, then click <b>Save & Submit</b>.", img:"images/pg-profile-1.png"},
+          {text:"<b>Insurance Details</b> — review the already-saved list first (Edit if it's there); otherwise search the insurance, fill in policy/group numbers and subscriber details, and click <b>Save</b>.", img:"images/pg-profile-2.png", note:"Always review the saved list first to avoid duplicates."},
+          {text:"<b>Pharmacy Details</b> — search by name or address, select a pharmacy, click <b>Add to Favorite</b>, and use <b>Set to Default</b> for the preferred one.", img:"images/pg-profile-3.png"},
+          {text:"<b>Preferences</b> — choose appointment-reminder channels (Voice, Email, Text) and other practice communication options.", img:"images/pg-profile-4.png"},
+        ]},
+
+      { id:"insync-pg-forms", title:"Forms & Signatures", group:"Patient Portal — Patient Guide", short:"Forms & Signatures",
+        lead:"How the patient completes and signs the forms assigned by the practice.",
+        steps:[
+          {text:"Click <b>Forms/Documents</b> in the sidebar (a red badge shows pending forms), open a form by its blue name link, fill in all fields, add a signature, and click <b>Save & Submit</b>.", img:"images/pg-forms-1.png"},
+          {text:"<b>Manual signature</b> — click the pen icon, draw the signature in the box, click <b>Accept</b>, then <b>Save & Submit</b>.", img:"images/pg-forms-2.png"},
+          {text:"<b>Type signature</b> — click the pen icon, switch to the <b>Type</b> tab, type the name, pick a handwriting font, click <b>Accept</b>, then <b>Save & Submit</b>.", img:"images/pg-forms-3.png"},
+        ]},
+
+      { id:"insync-pg-tx", title:"Treatment Plan & Lab Results", group:"Patient Portal — Patient Guide", short:"Treatment Plan & Labs",
+        lead:"Signing treatment plans and viewing released lab results.",
+        steps:[
+          {text:"<b>Treatment Plan</b> — click it in the sidebar (a badge shows pending plans), click <b>Sign Treatment Plan</b>, review, and sign. Signed plans move to Submitted Treatment Plans.", img:"images/pg-tx-1.png"},
+          {text:"<b>Lab Results</b> — click it in the sidebar and pick a Category (Lab, Radiology, or Special Studies) to view released results.", img:"images/pg-tx-2.png", note:"Results are only visible after the provider releases them."},
+        ]},
+
+      { id:"insync-pg-msg", title:"Messages", group:"Patient Portal — Patient Guide", short:"Messages",
+        lead:"How the patient reads, replies to, and sends secure messages with the practice.",
+        steps:[
+          {text:"Click <b>Messages</b> in the sidebar (or the Messages tile on the dashboard). It has Inbox, Compose, and Sent Messages tabs.", img:"images/pg-msg-1.png", note:"Provider To-Do items from InSync also appear here, and replies route back to the provider's To-Do."},
+          {text:"In the <b>Inbox</b>, unread messages are at the top (urgent ones in red). Click <b>Open</b> to read, <b>Reply</b> to respond, or check a box and <b>Delete</b> to remove.", img:"images/pg-msg-2.png"},
+          {text:"Read messages move to the <b>Read Messages</b> section; use the search bar to find messages, and enable Show Auto Archived Old Messages for older ones.", img:"images/pg-msg-3.png"},
+          {text:"<b>Compose</b> — click the tab, pick the recipient in the To field, set Priority, add a Subject and any attachments, type the message, check the acknowledgment box, and click <b>Send</b>.", img:"images/pg-msg-4.png", note:"For emergencies the patient should call 911 — messages may not be reviewed immediately."},
+          {text:"<b>Sent Messages</b> — click the tab to see all sent messages (including automatic form-submission records); click <b>Open</b> to view any of them.", img:"images/pg-msg-5.png"},
+        ]},
     ]
   },
 
