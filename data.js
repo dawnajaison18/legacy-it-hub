@@ -92,7 +92,7 @@ const DATA = {
           {text:"The list downloads as an Excel file (<b>Insurance List.xlsx</b>) — find it in your browser's recent downloads, ready to open in Excel.",},
         ]},
 
-      { id:"insync-create-group", title:"Creating a Patient Group",
+      { id:"insync-create-group", title:"Creating a Patient Group", group:"Patient Group", short:"Creating",
         lead:"Set up a new patient group in InSync, used for group therapy sessions.",
         steps:[
           {text:"From the <b>Quick Search</b> bar in the top-left corner of the Dashboard, type <b>GROUPS</b> and select <b>Patient Groups in Patients</b>.", img:"images/insync-creategroup-1.png"},
@@ -100,7 +100,7 @@ const DATA = {
           {text:"Complete all required fields in the form, then click <b>Save</b>.", img:"images/insync-creategroup-3.png", note:"Fields: (1) Group Name — a unique name for the group. (2) Effective Start Date — when the group becomes active. (3) Effective End Date — optional; leave blank if ongoing. (4) Select Provider — the provider for this group. (5) Add Patients — search by First Name, Last Name, MRN, or SSN; chosen patients appear in the Selected Patients panel on the right. (6) Save."},
         ]},
 
-      { id:"insync-manage-groups", title:"Managing Patient Groups",
+      { id:"insync-manage-groups", title:"Managing Patient Groups", group:"Patient Group", short:"Managing",
         lead:"Expand, edit, remove members from, or inactivate an existing patient group.",
         steps:[
           {text:"Use the icons next to each group to manage it: the <b>Plus (+)</b> expands and shows all members, the <b>purple Edit Pencil (✎)</b> edits the group or adds members, and the <b>red X (✕)</b> inactivates the group.", img:"images/insync-mg-icons.png"},
@@ -112,7 +112,7 @@ const DATA = {
           {text:"<b>To edit one patient's record</b> — expand the group, click the <b>Edit (✎)</b> icon on that patient's row to expand it, change the details, then click the <b>Tick (✔)</b> to save, or the <b>Cross (✖)</b> to discard.", img:["images/insync-mg-editpatient-1.png",{src:"images/insync-mg-editpatient-2.png",lg:true}]},
         ]},
 
-      { id:"insync-schedule-group", title:"Scheduling a Group Appointment",
+      { id:"insync-schedule-group", title:"Scheduling a Group Appointment", group:"Patient Group", short:"Scheduling",
         lead:"Book a group therapy session on the Scheduler, and verify each patient's details first.",
         steps:[
           {text:"Open the <b>Scheduler</b> using the Scheduler icon, then select the date, day, and time for the group. A booking pop-up appears.", img:{src:"images/insync-sch-select.png",lg:true}},
@@ -125,7 +125,7 @@ const DATA = {
           {text:"The patient count on the Scheduler increases by one (for example, from 2 to 3).", img:"images/insync-sch-otf-count.png"},
         ]},
 
-      { id:"insync-group-note", title:"Documenting a Group Therapy Note",
+      { id:"insync-group-note", title:"Documenting a Group Therapy Note", group:"Patient Group", short:"Group Therapy Notes",
         lead:"Complete a group therapy note in three phases — the shared group note, each patient's individual note, and the charting elements.",
         steps:[
           {text:"<b>Prerequisite:</b> make sure every patient has the <b>Group Program</b> added on the Patient Group screen before you start.",},
@@ -141,51 +141,86 @@ const DATA = {
           {text:"Complete the required details in the <b>End Encounter</b> pop-up and click <b>Sign</b>.", img:{src:"images/insync-gn-end.png",lg:true}},
         ]},
 
-      { id:"insync-insurance-mgmt", title:"Insurance Management",
-        lead:"The full insurance workflow in InSync — add new insurance, edit it, inactivate or reactivate it, attach it to a patient, and set up authorizations.",
+      { id:"insync-ins-add", title:"Adding New Insurance", group:"Insurance Management", short:"Adding New Insurance",
+        lead:"Create a new insurance record in InSync.",
         steps:[
-          {text:"<b>ADDING NEW INSURANCE.</b> In the <b>Quick Search</b> bar, type <b>insurance</b> and select <b>Insurance in Administration</b> — or go to <b>Admin → Insurance Management</b>.", img:{src:"images/ins-add-1.png",lg:true}},
+          {text:"In the <b>Quick Search</b> bar, type <b>insurance</b> and select <b>Insurance in Administration</b> — or go to <b>Admin → Insurance Management</b>.", img:{src:"images/ins-add-1.png",lg:true}},
           {text:"You'll see the current list of insurance on file. Click <b>Add New Insurance</b> in the bottom-left corner.", img:{src:"images/ins-add-2.png",lg:true}},
           {text:"Fill out all mandatory fields — <b>Name, Address, Insurance Type, Filing State, and Claim Payer ID</b> — then click <b>Add</b>.", img:{src:"images/ins-add-3.png",lg:true}, note:"Every field marked with an asterisk (*) is required before you can click Add."},
           {text:"A <b>\"Filing Vendor configured successfully\"</b> message confirms it saved.", img:"images/ins-add-4.png"},
           {text:"To change filing-vendor details later, click the <b>edit icon</b> to the left of the record, update the fields, and click <b>Update</b>.", img:{src:"images/ins-add-5.png",lg:true}},
           {text:"Scroll down to <b>Eligibility Details</b> and <b>Insurance Rules</b>. Copy the Claim Payer ID into the <b>Eligibility Payer ID</b>. For Insurance Rules, click <b>Yes</b> to copy from an existing insurance or <b>No</b> to create new ones, then click <b>Save</b>.", img:{src:"images/ins-add-6.png",lg:true}, note:"The Eligibility Payer ID and Claim Payer ID are usually the same value."},
           {text:"A <b>\"New Insurance added successfully\"</b> message confirms the insurance is created.", img:"images/ins-add-7.png"},
-          {text:"<b>EDITING EXISTING INSURANCE.</b> Go to <b>Admin → Insurance Management</b>, click the <b>edit pencil icon</b> to the left of the insurance name, scroll to the section you need, update the fields, and click <b>Save</b>.", img:{src:"images/ins-edit-1.png",lg:true}},
-          {text:"<b>INACTIVATING INSURANCE.</b> Go to <b>Admin → Resource Management</b>, search for the insurance name, and click the <b>inactivate icon</b> next to it.", img:{src:"images/ins-inact-1.png",lg:true}},
+        ]},
+
+      { id:"insync-ins-edit", title:"Editing Existing Insurance", group:"Insurance Management", short:"Editing Insurance",
+        lead:"Update an insurance record that already exists.",
+        steps:[
+          {text:"Go to <b>Admin → Insurance Management</b>, click the <b>edit pencil icon</b> to the left of the insurance name, scroll to the section you need, update the fields, and click <b>Save</b>.", img:{src:"images/ins-edit-1.png",lg:true}},
+        ]},
+
+      { id:"insync-ins-inactivate", title:"Inactivating & Reactivating Insurance", group:"Insurance Management", short:"Inactivate / Reactivate",
+        lead:"Take an insurance out of use, and bring it back when needed.",
+        steps:[
+          {text:"Go to <b>Admin → Resource Management</b>, search for the insurance name, and click the <b>inactivate icon</b> next to it.", img:{src:"images/ins-inact-1.png",lg:true}},
           {text:"Click <b>Yes</b> on the confirmation pop-up.", img:"images/ins-inact-2.png", note:"Double-check you're inactivating the correct insurance."},
           {text:"An <b>\"Insurance inactivated successfully\"</b> message confirms it.", img:"images/ins-inact-3.png"},
           {text:"<b>To reactivate</b> — deselect the active checkbox to show inactive records, then click the <b>Active</b> button next to the insurance.", img:{src:"images/ins-inact-4.png",lg:true}},
           {text:"Click <b>Yes</b> to confirm — a success message confirms the insurance is active again.", img:"images/ins-inact-5.png"},
-          {text:"<b>ADDING INSURANCE TO A PATIENT.</b> Click the <b>Patient Search</b> bookmark and search for the patient by name.", img:{src:"images/ins-pat-1.png",lg:true}},
+        ]},
+
+      { id:"insync-ins-patient", title:"Adding Insurance to a Patient", group:"Insurance Management", short:"Adding to a Patient",
+        lead:"Attach an insurance to a specific patient's record.",
+        steps:[
+          {text:"Click the <b>Patient Search</b> bookmark and search for the patient by name.", img:{src:"images/ins-pat-1.png",lg:true}},
           {text:"Click the icon under the <b>Payor</b> column to jump to the insurance section of the patient's demographics — or click <b>Edit</b> and open the Insurance tab.", img:{src:"images/ins-pat-2.png",lg:true}},
           {text:"Fill in all required insurance details. In the <b>Subscriber Details</b> ribbon, use <b>Copy Patient Details</b> (or <b>Copy Guarantor Details</b>) to auto-fill from demographics, then click <b>Save</b>.", img:{src:"images/ins-pat-3.png",lg:true}},
           {text:"If the patient is enrolled in programs, a pop-up asks whether to map the insurance to them — click <b>Yes</b> for accurate billing, or <b>No</b> to skip.", img:"images/ins-pat-4.png"},
           {text:"A second pop-up asks whether to link the insurance to <b>Current and Future</b> or <b>Past</b> appointments. Choose the option you need and click <b>Yes</b>.", img:"images/ins-pat-5.png"},
-          {text:"<b>INSURANCE AUTHORIZATION.</b> In the patient's <b>Insurance tab</b>, click the <b>gear icon</b> to the right of the insurance record to open Authorization Details.", img:{src:"images/ins-auth-1.png",lg:true}, note:"At least one starred field — Authorization Number or Authorization Name — must be filled."},
+        ]},
+
+      { id:"insync-ins-auth", title:"Insurance Authorization", group:"Insurance Management", short:"Authorization",
+        lead:"Set up and view authorizations on a patient's insurance.",
+        steps:[
+          {text:"In the patient's <b>Insurance tab</b>, click the <b>gear icon</b> to the right of the insurance record to open Authorization Details.", img:{src:"images/ins-auth-1.png",lg:true}, note:"At least one starred field — Authorization Number or Authorization Name — must be filled."},
           {text:"Fill out the authorization details. If the <b>Type</b> is <b>Per Unit</b>, also complete the <b>CPT Configuration</b> — enter the CPT code and allowed units, click <b>Add</b>, then <b>Save</b>.", img:{src:"images/ins-auth-2.png",lg:true}},
           {text:"The <b>CPT Configuration</b> section shows each CPT code with its configured and remaining units; use the action icons to edit or inactivate entries.", img:{src:"images/ins-auth-3.png",lg:true}},
           {text:"An <b>\"Authorization mapped successfully\"</b> message confirms it's linked to the patient's insurance.", img:"images/ins-auth-4.png"},
           {text:"The <b>gear icon</b> now appears highlighted. Click the <b>i icon</b> to see a quick summary of the authorization.", img:{src:"images/ins-auth-5.png",lg:true}},
         ]},
 
-      { id:"insync-encounter-assessment", title:"Encounter & Assessment Management",
-        lead:"Clinical encounter workflows in InSync — starting an encounter, copying from a previous one, using macros, building a treatment plan, and sending assessments to the portal.",
+      { id:"insync-enc-start", title:"Starting an Encounter", group:"Encounter & Assessment", short:"Starting an Encounter",
+        lead:"Launch a clinical encounter for a checked-in patient.",
         steps:[
-          {text:"<b>STARTING AN ENCOUNTER.</b> On the <b>Visit Overview</b> screen, find the patient whose Visit Status is <b>Check In</b>, then click the <b>Encounter icon</b> on the right of their row.", img:{src:"images/enc-start-1.png",lg:true}},
+          {text:"On the <b>Visit Overview</b> screen, find the patient whose Visit Status is <b>Check In</b>, then click the <b>Encounter icon</b> on the right of their row.", img:{src:"images/enc-start-1.png",lg:true}},
           {text:"The <b>Facesheet</b> opens — the central hub for the encounter. Use the tab bar at the top (Diagnosis, S.N.A.P., Treatment Plan, Visit Codes, etc.) to move between charting sections.", img:{src:"images/enc-start-2.png",lg:true}},
-          {text:"<b>COPY FROM A PREVIOUS ENCOUNTER.</b> Inside the encounter, click the <b>Copy icon</b> in the top-right toolbar of the Facesheet. Use the Type, Provider, Category, and Program filters to find the right encounter.", img:{src:"images/enc-copy-1.png",lg:true}},
+        ]},
+
+      { id:"insync-enc-copy", title:"Copy from a Previous Encounter", group:"Encounter & Assessment", short:"Copy from Previous",
+        lead:"Reuse charting from a prior encounter to save time, then end and sign the encounter.",
+        steps:[
+          {text:"Inside the encounter, click the <b>Copy icon</b> in the top-right toolbar of the Facesheet. Use the Type, Provider, Category, and Program filters to find the right encounter.", img:{src:"images/enc-copy-1.png",lg:true}},
           {text:"Click <b>Select</b> on the encounter you want to copy from — the row highlights yellow and its charting elements load below.", img:{src:"images/enc-copy-2.png",lg:true}},
           {text:"Tick the checkboxes next to the items you want to copy, then click <b>Copy & Append</b>.", img:{src:"images/enc-copy-3.png",lg:true}, note:"\"Copy & Append\" adds to the current encounter; \"Copy & Replace\" overwrites existing elements — use it carefully."},
           {text:"A green banner confirms the elements were appended. Review the copied documents and edit anything specific to this visit.", img:{src:"images/enc-copy-4.png",lg:true}},
           {text:"When you're done, click the orange <b>Exit Encounter</b> button (top-right) to open the End Encounter page.", img:{src:"images/enc-copy-5.png",lg:true}},
           {text:"On the <b>End Encounter</b> page, review Patient Details, Visit Codes, and Appointment Details.", img:{src:"images/enc-copy-6.png",lg:true}},
           {text:"In the <b>Note Control Panel</b> at the bottom, enter the <b>End Time</b>, click <b>End</b>, then <b>Sign</b>. An \"Encounter ended successfully\" banner appears.", img:[{src:"images/enc-copy-7a.png",lg:true},"images/enc-copy-7b.png"]},
-          {text:"<b>MACROS.</b> A macro is a reusable note template. Inside the encounter, expand the <b>General Notes</b> box, scroll to the far right of its toolbar, and click the green <b>+ Add Macro</b> icon.", img:{src:"images/enc-macro-1.png",lg:true}},
+        ]},
+
+      { id:"insync-enc-macros", title:"Adding & Using Macros", group:"Encounter & Assessment", short:"Macros",
+        lead:"Macros are reusable note templates — create one once and insert it into any encounter.",
+        steps:[
+          {text:"A macro is a reusable note template. Inside the encounter, expand the <b>General Notes</b> box, scroll to the far right of its toolbar, and click the green <b>+ Add Macro</b> icon.", img:{src:"images/enc-macro-1.png",lg:true}},
           {text:"The <b>Macro Details</b> box opens. To create a new macro, click the <b>gear (⚙) icon</b>.", img:{src:"images/enc-macro-2.png",lg:true}},
           {text:"In <b>Macro Configuration</b>, enter a <b>Macro Name</b>, type the reusable text, and click <b>Save</b>.", img:{src:"images/enc-macro-3.png",lg:true}},
           {text:"Back in General Notes, click <b>+ Add Macro</b> again, pick your macro from the <b>Macro Name</b> dropdown, then click <b>Insert</b>. Edit the inserted text for the specific patient.", img:[{src:"images/enc-macro-4a.png",lg:true},"images/enc-macro-4b.png"]},
-          {text:"<b>ADDING A TREATMENT PLAN.</b> In the encounter tab bar, click the <b>Treatment Plan</b> tab (it highlights teal/green).", img:{src:"images/enc-tp-1.png",lg:true}},
+        ]},
+
+      { id:"insync-enc-treatment", title:"Adding a Treatment Plan", group:"Encounter & Assessment", short:"Treatment Plan",
+        lead:"Document client problems, goals, objectives, and interventions, then print and send the Treatment Plan Letter.",
+        steps:[
+          {text:"In the encounter tab bar, click the <b>Treatment Plan</b> tab (it highlights teal/green).", img:{src:"images/enc-tp-1.png",lg:true}},
           {text:"The page has <b>General Notes</b> at the top, a <b>problem entry form</b> in the middle, and a <b>problem grid</b> at the bottom.", img:{src:"images/enc-tp-2.png",lg:true}},
           {text:"Fill in the problem details — <b>Behaviorally Descriptive & in Client's Words</b>, <b>Provider Category</b>, <b>Send To Do</b> — then click <b>Add</b>.", img:{src:"images/enc-tp-3.png",lg:true}},
           {text:"A <b>\"Problem added successfully\"</b> banner appears and the problem shows as a row in the grid. Repeat to add all problems.", img:{src:"images/enc-tp-4.png",lg:true}},
@@ -194,7 +229,12 @@ const DATA = {
           {text:"When all goals are saved, click the <b>Print Treatment Plan Letter</b> icon in the top-right toolbar to open the formatted letter.", img:[{src:"images/enc-tp-7a.png",lg:true},{src:"images/enc-tp-7b.png",lg:true}]},
           {text:"In the letter's <b>Patient Signature</b> section, enter Notes, Signed By, and Relationship, capture the signature, then click <b>Sent Treatment Plan Letter to Portal</b>.", img:{src:"images/enc-tp-8.png",lg:true}},
           {text:"The signed letter is sent, and a <b>\"Care Plan Letter saved to Document Manager successfully\"</b> message confirms it auto-saved.", img:[{src:"images/enc-tp-9a.png",lg:true},"images/enc-tp-9b.png"]},
-          {text:"<b>SENDING ASSESSMENTS.</b> In the <b>Quick Search</b> bar, type <b>ass</b> and select <b>Assessment Tools in Patients</b> (not \"in Administration\").", img:[{src:"images/enc-assess-1a.png",lg:true},{src:"images/enc-assess-1b.png",lg:true}]},
+        ]},
+
+      { id:"insync-enc-assess", title:"Sending Assessments to the Portal", group:"Encounter & Assessment", short:"Sending Assessments",
+        lead:"Configure clinical assessments and send them to patients — on-the-fly, on a schedule, or triggered by an action.",
+        steps:[
+          {text:"In the <b>Quick Search</b> bar, type <b>ass</b> and select <b>Assessment Tools in Patients</b> (not \"in Administration\").", img:[{src:"images/enc-assess-1a.png",lg:true},{src:"images/enc-assess-1b.png",lg:true}]},
           {text:"Click <b>Configure Charting Assessment Tools</b>, tick the <b>Portal</b> checkbox for each assessment you want to enable, then click <b>Save</b>.", img:{src:"images/enc-assess-2.png",lg:true}, note:"Check with your manager before enabling — many assessment tools are copyright-protected."},
           {text:"<b>To send now</b> — expand the <b>Send Assessments on-the-fly</b> ribbon, fill in the patient, provider, program, and recipient details, then click <b>Save</b>.", img:[{src:"images/enc-assess-3a.png",lg:true},{src:"images/enc-assess-3b.png",lg:true}]},
           {text:"<b>To send on a schedule</b> — expand the schedule ribbon, set the schedule, dates, patient, provider, and program, then click <b>Save</b>. Great for recurring screenings like PHQ-9 or GAD-7.", img:{src:"images/enc-assess-4.png",lg:true}},

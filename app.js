@@ -41,9 +41,20 @@ function showCats(){
 /* ---------------- SIDEBAR (category-specific) ---------------- */
 let currentCat=null,currentTopic=null;
 function buildSidebar(key){
-  document.getElementById('side-list').innerHTML=DATA[key].topics.map(t=>
-    `<li><button data-t="${t.id}" onclick="openTopic('${key}','${t.id}')">
-       <span class="dot"></span><span class="txt">${t.title}</span></button></li>`).join('');
+  const topics=DATA[key].topics;
+  let html=''; let lastGroup=null;
+  topics.forEach(t=>{
+    const g=t.group||null;
+    if(g && g!==lastGroup){
+      html+=`<li class="side-group"><button class="side-group-btn" onclick="openTopic('${key}','${t.id}')">${g}</button></li>`;
+    }
+    lastGroup=g;
+    const sub=g?' side-sub':'';
+    const label=t.short||t.title;
+    html+=`<li><button class="${sub}" data-t="${t.id}" onclick="openTopic('${key}','${t.id}')">
+       <span class="dot"></span><span class="txt">${label}</span></button></li>`;
+  });
+  document.getElementById('side-list').innerHTML=html;
 }
 function toggleSidebar(){document.getElementById('learn-shell').classList.toggle('collapsed');}
 
@@ -71,7 +82,7 @@ function openTopic(key,id){
     return `<li>${o.text}${imgHtml}${o.note?`<div class="note">💡 ${o.note}</div>`:''}</li>`;
   }).join('');
   document.getElementById('topic-content').innerHTML=`
-    <span class="crumb">${c.name}</span>
+    <span class="crumb">${c.name}${t.group?` <span class="crumb-sep">›</span> ${t.group}`:''}</span>
     <h1>${t.title}</h1>
     <p class="lead">${t.lead}</p>
     <h2 class="step-h">Step-by-step${hasImg?` <span class="zoom-hint">🔍 click any image to enlarge</span>`:''}</h2>
