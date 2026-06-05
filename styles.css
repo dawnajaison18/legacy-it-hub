@@ -114,17 +114,24 @@
   .side li button.active{background:var(--gold);color:#3a1d00;font-weight:600}
   .side li button .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none;opacity:.6}
   .side-group,.side-main-li{margin-top:14px}
+  .side-sub-list{list-style:none;margin:0;padding:0;overflow:hidden;max-height:0;transition:max-height .28s ease}
+  .side-group.open .side-sub-list{max-height:1600px}
   .side li button.side-group-btn{
     color:var(--gold);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
     font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;line-height:1.35;
     padding:8px 12px 6px;border-bottom:1px solid rgba(255,255,255,.12);border-radius:0;
   }
+  .side li button.side-group-btn:not(.side-main){justify-content:space-between}
+  .side-group-btn .caret{flex:none;font-size:.78em;opacity:.7;transition:transform .25s ease}
+  .side-group.open .side-group-btn .caret{transform:rotate(90deg)}
   .side li button.side-group-btn:hover{color:#fff;background:none}
   .side li button.side-group-btn.active{color:var(--gold);background:rgba(255,255,255,.06)}
   .side-main .dot{display:none}
   .side li button.side-sub{padding-left:24px;font-size:.86rem}
   .side li button.side-sub .dot{opacity:.4}
-  .collapsed .side-cat,.collapsed .side li button span.txt,.collapsed .side-group{display:none}
+  .collapsed .side-cat,.collapsed .side li button span.txt,.collapsed .side-group-btn .caret{display:none}
+  .collapsed .side-group-btn{display:none}
+  .collapsed .side-sub-list{max-height:none!important}
   .collapsed aside.side{padding:18px 8px}
   .collapsed .side-top{justify-content:center}
   .collapsed .side li button{justify-content:center;padding:9px;border-bottom:none}

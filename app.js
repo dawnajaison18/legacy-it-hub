@@ -42,23 +42,30 @@ function showCats(){
 let currentCat=null,currentTopic=null;
 function buildSidebar(key){
   const topics=DATA[key].topics;
-  let html=''; let lastGroup=null;
-  topics.forEach(t=>{
-    const g=t.group||null;
-    if(g && g!==lastGroup){
-      html+=`<li class="side-group"><button class="side-group-btn" onclick="openTopic('${key}','${t.id}')">${g}</button></li>`;
-    }
-    lastGroup=g;
-    if(g){
-      html+=`<li><button class="side-sub" data-t="${t.id}" onclick="openTopic('${key}','${t.id}')">
-         <span class="dot"></span><span class="txt">${t.short||t.title}</span></button></li>`;
+  let html=''; let i=0;
+  while(i<topics.length){
+    const t=topics[i];
+    if(t.group){
+      const g=t.group; let subs='';
+      while(i<topics.length && topics[i].group===g){
+        const st=topics[i];
+        subs+=`<li><button class="side-sub" data-t="${st.id}" onclick="openTopic('${key}','${st.id}')">
+           <span class="dot"></span><span class="txt">${st.short||st.title}</span></button></li>`;
+        i++;
+      }
+      html+=`<li class="side-group">
+        <button class="side-group-btn" onclick="toggleGroup(this)"><span class="txt">${g}</span><span class="caret">▸</span></button>
+        <ul class="side-sub-list">${subs}</ul>
+      </li>`;
     } else {
       html+=`<li class="side-main-li"><button class="side-group-btn side-main" data-t="${t.id}" onclick="openTopic('${key}','${t.id}')">
          <span class="dot"></span><span class="txt">${t.title}</span></button></li>`;
+      i++;
     }
-  });
+  }
   document.getElementById('side-list').innerHTML=html;
 }
+function toggleGroup(btn){ btn.closest('.side-group').classList.toggle('open'); }
 function toggleSidebar(){document.getElementById('learn-shell').classList.toggle('collapsed');}
 
 /* ---------------- TOPIC CONTENT ---------------- */
@@ -66,6 +73,8 @@ function openTopic(key,id){
   currentCat=key;currentTopic=id;
   const c=DATA[key], t=c.topics.find(x=>x.id===id);
   document.querySelectorAll('#side-list button').forEach(b=>b.classList.toggle('active',b.dataset.t===id));
+  const activeBtn=document.querySelector('#side-list button.active');
+  if(activeBtn){const grp=activeBtn.closest('.side-group'); if(grp) grp.classList.add('open');}
   const imgMap=(typeof STEP_IMAGES!=='undefined'&&STEP_IMAGES[id])||[];
   let hasImg=false;
   const steps=t.steps.map((s,idx)=>{
