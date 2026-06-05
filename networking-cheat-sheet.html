@@ -163,15 +163,23 @@
     .term .c::before{color:#333}
     header.masthead{padding-top:0}
   }
+
+  .part{margin:48px 0 10px;padding-top:10px;border-top:2px solid var(--ink)}
+  .part-label{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);font-weight:700;display:block}
+  .part-sub{color:var(--ink-soft);font-size:.95rem;margin-top:4px}
+  .analogy{background:var(--amber-wash);border-left:3px solid var(--amber);border-radius:0 10px 10px 0;padding:13px 16px;margin:14px 0;font-size:.96rem}
+  .analogy b{color:var(--amber)}
+  .toc-part{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--coral);margin:16px 0 4px;padding-left:12px;font-weight:700}
+  nav.toc a:first-of-type{margin-top:0}
 </style>
 </head>
 <body>
 
 <header class="masthead">
   <div class="wrap">
-    <span class="eyebrow">IT Hub · Reference</span>
-    <h1>Networking Cheat Sheet</h1>
-    <p>A complete working reference for the networking an MIS / IT support role relies on — from the mental models down to the commands you'll run at a desk: addressing, devices, protocols, wireless, cabling, troubleshooting, firewalls, and VLANs.</p>
+    <span class="eyebrow">IT Hub · Learn from scratch</span>
+    <h1>Networking — Made Simple</h1>
+    <p>A plain-English guide to networking for someone starting from zero. No assumptions, everyday analogies, and every term explained the first time it appears. Read Part 1 in order and the rest will make sense.</p>
     <div class="org">LEGACY BEHAVIORAL HEALTH CENTER &nbsp;//&nbsp; INTERNAL IT REFERENCE</div>
   </div>
 </header>
@@ -182,286 +190,297 @@
   <nav class="toc">
     <span class="label">Contents</span>
     <div class="links">
-      <a href="#fundamentals">Fundamentals</a>
-      <a href="#osi">OSI &amp; TCP/IP model</a>
-      <a href="#devices">Network devices</a>
-      <a href="#subnetting">IP &amp; subnetting</a>
+      <span class="toc-part">Part 1 · The basics</span>
+      <a href="#whatis">What a network is</a>
+      <a href="#words">Words you'll hear daily</a>
+      <a href="#boxes">The boxes on the wall</a>
+      <a href="#journey">Opening a website</a>
+      <a href="#wifi">Wi-Fi made simple</a>
+      <a href="#cables">Cables made simple</a>
+      <span class="toc-part">Part 2 · Fixing problems</span>
+      <a href="#iptypes">Address types &amp; red flags</a>
+      <a href="#commands">Troubleshooting toolkit</a>
+      <a href="#diagnose">The game plan</a>
+      <a href="#helpdesk">Everyday tickets</a>
+      <span class="toc-part">Part 3 · Going deeper</span>
+      <a href="#protocols">TCP vs UDP</a>
+      <a href="#ports">Ports</a>
+      <a href="#osi">The OSI map</a>
+      <a href="#subnetting">Subnetting</a>
       <a href="#cidr">CIDR reference</a>
-      <a href="#iptypes">IP address types</a>
-      <a href="#protocols">Protocols: TCP / UDP</a>
-      <a href="#ports">Common ports</a>
-      <a href="#wifi">Wi-Fi &amp; wireless</a>
-      <a href="#cabling">Cabling &amp; connectors</a>
-      <a href="#vpn">VPN &amp; remote access</a>
-      <a href="#commands">Troubleshooting</a>
-      <a href="#diagnose">Diagnostic flow</a>
+      <a href="#vpn">VPN</a>
       <a href="#firewall">Firewalls</a>
       <a href="#vlan">VLANs</a>
-      <a href="#helpdesk">Help-desk issues</a>
     </div>
   </nav>
 
   <main>
 
-    <section id="fundamentals">
-      <div class="sec-head"><span class="sec-num">01</span><h2>Networking fundamentals</h2></div>
-      <p class="lead">A network is devices that can talk to each other. Every device needs an <strong>address</strong> so traffic knows where to go, and boxes in the middle move that traffic to the right place. Almost everything is some version of "what's the address, and how does traffic get from A to B safely."</p>
+    <div class="part"><span class="part-label">Part 1 — The basics</span><p class="part-sub">No jargon. Read these six in order and networking starts to click.</p></div>
+
+    <section id="whatis">
+      <div class="sec-head"><span class="sec-num">01</span><h2>What a network actually is</h2></div>
+      <p class="lead">A network is just <strong>devices that can talk to each other</strong> — computers, phones, printers, servers. The <strong>internet</strong> is simply a huge number of these networks joined together. That's the whole idea. Everything else is detail about <i>how</i> the talking happens.</p>
+      <div class="analogy"><b>Think of it like the postal system.</b> Every device is a building with a street address. When one device sends information, it's like mailing a stack of labelled envelopes — each has a "to" address and a "from" address — and machines in the middle (think post offices) pass them along until they arrive. Networking is mostly just: <i>what's the address, and how does the envelope get there?</i></div>
+      <div class="note">Those "envelopes" are called <b>packets</b>. A big file (say a photo) is chopped into many small packets, sent across the network, and reassembled at the other end. If a few get lost, they're re-sent.</div>
+    </section>
+
+    <section id="words">
+      <div class="sec-head"><span class="sec-num">02</span><h2>The words you'll hear every day</h2></div>
+      <p class="lead">Six terms cover most everyday conversations. Learn these and most things make sense.</p>
       <div class="grid2">
-        <div class="card"><h4>IP address</h4><p>A device's address on the network, e.g. <b>192.168.1.50</b>. Office networks use <b>private</b> ranges (192.168.x.x, 10.x.x.x) that only work inside the building.</p></div>
-        <div class="card"><h4>Subnet mask</h4><p>Defines how big a group of addresses is, e.g. <b>255.255.255.0</b>. Devices in the same subnet talk directly; anything outside goes via the gateway.</p></div>
-        <div class="card"><h4>Default gateway</h4><p>The "exit door" — usually the router's IP. Traffic destined for anything not local is sent here.</p></div>
-        <div class="card"><h4>MAC address</h4><p>A device's permanent hardware address, e.g. <b>00:1A:2B:3C:4D:5E</b>. Used to deliver traffic <i>within</i> the local network; IP is used <i>between</i> networks.</p></div>
-        <div class="card"><h4>DHCP</h4><p>Automatically hands out IP addresses when devices connect. A DHCP failure (no address, or a <b>169.254.x.x</b> address) is a very common "no internet" cause.</p></div>
-        <div class="card"><h4>DNS</h4><p>Translates names into addresses — turns <b>google.com</b> into an IP. Symptom: a site won't load by name but pings fine by IP = DNS problem.</p></div>
+        <div class="card"><h4>IP address</h4><p>Your device's <b>address</b> on the network, like <code>192.168.1.50</code>. Like a street address — it tells traffic where to go. Office networks reuse the same "private" ranges (192.168.x.x, 10.x.x.x) inside the building.</p></div>
+        <div class="card"><h4>MAC address</h4><p>A device's <b>permanent serial number</b>, baked into the hardware, like <code>00:1A:2B:3C:4D:5E</code>. Like a car's VIN — it never changes, even when the IP address does.</p></div>
+        <div class="card"><h4>Default gateway</h4><p>The <b>way out</b> of your local network — almost always the router. Like the front door of your building: anything not inside goes out through it.</p></div>
+        <div class="card"><h4>DHCP</h4><p>The <b>automatic address clerk</b>. When a device joins, DHCP hands it an IP address so nobody sets one by hand. When DHCP fails, devices get no internet — a very common problem.</p></div>
+        <div class="card"><h4>DNS</h4><p>The <b>phone book</b> of the internet. It turns names you remember (<code>google.com</code>) into the number addresses devices actually use. Site won't open by name but works by number? Suspect DNS.</p></div>
+        <div class="card"><h4>Subnet</h4><p>Your <b>neighborhood</b> — a group of addresses that can talk directly. Same subnet = they chat directly; anything outside goes out through the gateway.</p></div>
       </div>
-      <div class="note"><b>The mental model:</b> a switch and router <i>move</i> traffic, a firewall <i>judges</i> it, DHCP <i>assigns</i> addresses, and DNS <i>translates</i> names. Keep those four verbs straight and most setups make sense.</div>
+      <div class="note"><b>One mental model to keep:</b> a switch and router <i>move</i> traffic, a firewall <i>judges</i> it, DHCP <i>assigns</i> addresses, and DNS <i>translates</i> names. Keep those four verbs straight and most setups make sense.</div>
     </section>
 
-    <section id="osi">
-      <div class="sec-head"><span class="sec-num">02</span><h2>The OSI &amp; TCP/IP model</h2></div>
-      <p class="lead">A layered map of how data travels. You rarely memorise all of it, but it's the framework everyone uses to <i>locate</i> a problem — "is this a layer 1 (cable) issue or a layer 3 (IP) issue?" The OSI model has 7 layers; the simpler TCP/IP model collapses them into 4.</p>
-      <div class="layer"><span class="lnum">7</span><span class="lname">Application</span><span class="lex">What the user sees — HTTP, DNS, email, file sharing</span></div>
-      <div class="layer"><span class="lnum">6</span><span class="lname">Presentation</span><span class="lex">Formatting &amp; encryption — TLS/SSL, file formats</span></div>
-      <div class="layer"><span class="lnum">5</span><span class="lname">Session</span><span class="lex">Opening &amp; maintaining connections between apps</span></div>
-      <div class="layer"><span class="lnum">4</span><span class="lname">Transport</span><span class="lex">Reliable vs fast delivery — TCP &amp; UDP, ports</span></div>
-      <div class="layer"><span class="lnum">3</span><span class="lname">Network</span><span class="lex">Addressing &amp; routing between networks — IP, routers</span></div>
-      <div class="layer"><span class="lnum">2</span><span class="lname">Data Link</span><span class="lex">Local delivery on one network — MAC, switches, VLANs</span></div>
-      <div class="layer"><span class="lnum">1</span><span class="lname">Physical</span><span class="lex">The actual signal — cables, Wi-Fi radio, connectors</span></div>
-      <div class="callout"><b>Memory aid (top to bottom):</b> "All People Seem To Need Data Processing." Troubleshoot from the bottom up — confirm the cable (1) before you suspect DNS (7).</div>
+    <section id="boxes">
+      <div class="sec-head"><span class="sec-num">03</span><h2>The boxes on the wall</h2></div>
+      <p class="lead">The physical equipment, and what each one really does — in plain terms.</p>
+      <div class="grid2">
+        <div class="card"><h4>Modem</h4><p>The <b>translator</b> between your building and your internet provider. It converts the provider's signal into something your network understands. Usually one per site.</p></div>
+        <div class="card"><h4>Router</h4><p>The <b>traffic director</b> (the post office). It decides where data goes and connects your local network to the internet. Your "gateway" <i>is</i> the router.</p></div>
+        <div class="card"><h4>Switch</h4><p>A <b>smart splitter</b>. Connects many wired devices inside the building and sends each bit of traffic only to the device it's meant for.</p></div>
+        <div class="card"><h4>Access Point (AP)</h4><p>The thing that <b>broadcasts Wi-Fi</b>. It adds wireless to a wired network so phones and laptops can join without a cable.</p></div>
+        <div class="card"><h4>Firewall</h4><p>The <b>security guard</b>. It checks traffic against a rulebook and allows or blocks it. Often built into the router.</p></div>
+        <div class="card"><h4>Hub (old)</h4><p>An ancient "dumb switch" that shouted every message to every device. Replaced by switches — you'll rarely see one.</p></div>
+      </div>
+      <div class="note">A small office often has <b>one combined box</b> (modem + router + Wi-Fi + firewall). A clinic usually has them as <b>separate devices</b> so each can be sized and secured properly.</div>
     </section>
 
-    <section id="devices">
-      <div class="sec-head"><span class="sec-num">03</span><h2>Network devices</h2></div>
-      <p class="lead">The physical boxes and what each one actually does:</p>
+    <section id="journey">
+      <div class="sec-head"><span class="sec-num">04</span><h2>What happens when you open a website</h2></div>
+      <p class="lead">Here's the whole trip when you type an address and press enter — it ties every term above together:</p>
+      <div class="flow">
+        <div class="flow-step"><span class="flow-q">1</span><div><p><b>Name &rarr; number (DNS).</b> Your PC asks DNS, "what's the address for google.com?" and gets back a number (an IP address).</p></div></div>
+        <div class="flow-step"><span class="flow-q">2</span><div><p><b>Local or far away?</b> Your PC checks whether that address is in its own neighborhood (subnet). It isn't — so the request is handed to the <b>default gateway</b> (the router).</p></div></div>
+        <div class="flow-step"><span class="flow-q">3</span><div><p><b>Out through the router.</b> The router forwards the request toward the internet, through the modem and your provider.</p></div></div>
+        <div class="flow-step"><span class="flow-q">4</span><div><p><b>The reply comes back</b> the same way. The firewall lets the expected answer back in, and the page loads — all in a fraction of a second.</p></div></div>
+      </div>
+      <div class="callout">Notice every key term appeared once: <b>DNS</b> (name&rarr;number), <b>subnet</b> (local or not), <b>gateway/router</b> (the way out), <b>firewall</b> (lets the reply back). That's the whole game.</div>
+    </section>
+
+    <section id="wifi">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Wi-Fi made simple</h2></div>
+      <p class="lead">Two practical things matter: the <b>name and password</b> people connect to, and which <b>band</b> they're on.</p>
+      <div class="grid2">
+        <div class="card"><h4>SSID</h4><p><b>The network's name</b> — the thing you pick from the Wi-Fi list. "SSID" is just the technical word for it.</p></div>
+        <div class="card"><h4>Password &amp; security</h4><p>Wi-Fi is locked with <b>WPA2</b> or <b>WPA3</b> encryption. Rule of thumb: use <b>WPA3</b> if all devices support it, <b>WPA2</b> otherwise. Never use the old <b>WEP/WPA</b> — they're broken.</p></div>
+        <div class="card"><h4>Guest network</h4><p>A separate Wi-Fi name for visitors that keeps them off the internal systems. Always use one in a clinic.</p></div>
+        <div class="card"><h4>Channel</h4><p>A specific "lane" within a band. When nearby networks crowd the same lane, everyone slows down — changing channel can fix slow Wi-Fi.</p></div>
+      </div>
+      <h3>The two bands (lanes) Wi-Fi uses</h3>
       <table>
-        <thead><tr><th>Device</th><th>Job</th><th>Operates at</th></tr></thead>
+        <thead><tr><th>Band</th><th>Reach</th><th>Speed</th><th>In plain words</th></tr></thead>
         <tbody>
-          <tr><td><b>Modem</b></td><td>Connects your site to the ISP — converts the carrier signal to/from network data</td><td>Layer 1</td></tr>
-          <tr><td><b>Router</b></td><td>Joins different networks and routes traffic between them (LAN ↔ internet)</td><td>Layer 3</td></tr>
-          <tr><td><b>Switch</b></td><td>Connects devices within one network; moves traffic by MAC address</td><td>Layer 2</td></tr>
-          <tr><td><b>Access point (AP)</b></td><td>Adds Wi-Fi to a wired network — bridges wireless clients onto the LAN</td><td>Layer 2</td></tr>
-          <tr><td><b>Firewall</b></td><td>Filters traffic in/out against rules; often combined with the router</td><td>Layers 3–7</td></tr>
-          <tr><td><b>Hub</b></td><td>Legacy "dumb" repeater — sends everything to every port. Replaced by switches</td><td>Layer 1</td></tr>
+          <tr><td><b>2.4 GHz</b></td><td>Farther</td><td>Slower</td><td>Reaches through walls, but slower and crowded. Good for far-away devices.</td></tr>
+          <tr><td><b>5 GHz</b></td><td>Shorter</td><td>Faster</td><td>The everyday choice when you're near the access point.</td></tr>
+          <tr><td><b>6 GHz</b></td><td>Shortest</td><td>Fastest</td><td>Newest (Wi-Fi 6E/7). Very fast and clean, but needs modern hardware.</td></tr>
         </tbody>
       </table>
-      <div class="note">Many small sites use a single combined <b>modem-router-firewall-AP</b> box. In a larger setup like a clinic, these are usually separate devices so each can be sized and secured independently.</div>
+      <div class="note">Slow Wi-Fi is usually <b>distance, walls, too many devices, or a crowded channel</b> — not a broken network. Moving closer or switching to 5 GHz fixes most of it.</div>
     </section>
 
-    <section id="subnetting">
-      <div class="sec-head"><span class="sec-num">04</span><h2>IP addressing &amp; subnetting</h2></div>
-      <p class="lead">An IPv4 address is 32 bits, written as four octets (each 0–255). The address splits into a <strong>network portion</strong> (which network) and a <strong>host portion</strong> (which device). The subnet mask draws that dividing line.</p>
-      <div class="note">Example: <code>192.168.1.50 /24</code> — the <b>/24</b> means the first 24 bits (the first three octets, <b>192.168.1</b>) are the network. The last octet (<b>50</b>) identifies the host. Everything sharing <code>192.168.1.x</code> is on the same network.</div>
-      <h3>Reserved addresses</h3>
-      <p class="lead">Two addresses in every subnet are reserved and not usable by devices: the first is the <strong>network address</strong> (e.g. <code>192.168.1.0</code>) and the last is the <strong>broadcast address</strong> (e.g. <code>192.168.1.255</code>). That's why a /24 has 256 total addresses but only 254 usable.</p>
+    <section id="cables">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Cables made simple</h2></div>
+      <p class="lead">Wired connections are still the most reliable. The everyday cable is <b>Ethernet</b>, ending in a clip-in plug called <b>RJ45</b> (looks like a fat phone connector).</p>
+      <div class="grid2">
+        <div class="card"><h4>The cable</h4><p>An Ethernet cable clicks into the port. One run can be up to <b>100 metres (≈330 ft)</b> before the signal weakens.</p></div>
+        <div class="card"><h4>Categories</h4><p>Higher number = faster. <b>Cat5e</b> (1 Gbps, the common baseline) and <b>Cat6 / Cat6a</b> (up to 10 Gbps). For a normal desk, Cat5e or Cat6 is plenty.</p></div>
+        <div class="card"><h4>PoE (Power over Ethernet)</h4><p>Sends <b>power AND data</b> down one cable — so a Wi-Fi access point, IP phone, or camera needs no separate power adapter.</p></div>
+        <div class="card"><h4>Fiber optic</h4><p>Glass cable that carries data as light. Very fast, immune to electrical interference — used for long runs and between buildings.</p></div>
+      </div>
+      <div class="note"><b>Handy tip:</b> the small <b>link light</b> next to a network port tells you a lot. No light usually means a dead cable, a bad port, or nothing connected at the other end.</div>
     </section>
 
-    <section id="cidr">
-      <div class="sec-head"><span class="sec-num">05</span><h2>CIDR quick reference</h2></div>
-      <p class="lead">CIDR notation just counts how many bits belong to the network. The ones you'll meet most often:</p>
-      <table>
-        <thead><tr><th>CIDR</th><th>Subnet mask</th><th>Usable hosts</th><th>Typical use</th></tr></thead>
-        <tbody>
-          <tr><td><code>/24</code></td><td>255.255.255.0</td><td><b>254</b></td><td>Standard small office network</td></tr>
-          <tr><td><code>/25</code></td><td>255.255.255.128</td><td><b>126</b></td><td>Splitting a /24 into two halves</td></tr>
-          <tr><td><code>/26</code></td><td>255.255.255.192</td><td><b>62</b></td><td>Small department segment</td></tr>
-          <tr><td><code>/16</code></td><td>255.255.0.0</td><td><b>65,534</b></td><td>Large network (all of 10.1.x.x)</td></tr>
-          <tr><td><code>/30</code></td><td>255.255.255.252</td><td><b>2</b></td><td>Point-to-point link between two routers</td></tr>
-        </tbody>
-      </table>
-    </section>
+    <div class="part"><span class="part-label">Part 2 — Fixing problems</span><p class="part-sub">This is the part of the job you'll actually do at a desk.</p></div>
 
     <section id="iptypes">
-      <div class="sec-head"><span class="sec-num">06</span><h2>IP address types</h2></div>
+      <div class="sec-head"><span class="sec-num">07</span><h2>Address types &amp; the big red flag</h2></div>
       <div class="grid2">
-        <div class="card"><h4>Private vs public</h4><p><b>Private</b> (192.168.x.x, 10.x.x.x, 172.16–31.x.x) work only inside your network. <b>Public</b> addresses are routable on the internet and assigned by your ISP.</p></div>
-        <div class="card"><h4>Static vs dynamic</h4><p><b>Dynamic</b> addresses are assigned by DHCP and can change. <b>Static</b> addresses are set manually and stay fixed — used for servers, printers, and network gear.</p></div>
-        <div class="card"><h4>APIPA — 169.254.x.x</h4><p>A self-assigned address a device gives itself when DHCP fails. Seeing this is a red flag: the device never got a real address.</p></div>
-        <div class="card"><h4>Loopback — 127.0.0.1</h4><p>Always refers to "this device itself." <code>ping 127.0.0.1</code> tests whether the local network stack is working at all.</p></div>
-        <div class="card"><h4>IPv4 vs IPv6</h4><p><b>IPv4</b> is the familiar 32-bit dotted format. <b>IPv6</b> is a much larger 128-bit format (e.g. <code>2001:db8::1</code>) created because IPv4 addresses ran out.</p></div>
-        <div class="card"><h4>NAT</h4><p>Lets many private IPs share one public IP to reach the internet — and as a side effect hides internal devices from the outside world.</p></div>
+        <div class="card"><h4>Private vs public</h4><p><b>Private</b> addresses (192.168.x.x, 10.x.x.x) work only inside your building. <b>Public</b> addresses work on the open internet and come from your provider. Many private devices share one public address to get out — that sharing is called <b>NAT</b>.</p></div>
+        <div class="card"><h4>Static vs dynamic</h4><p><b>Dynamic</b> = handed out automatically by DHCP, can change. <b>Static</b> = set by hand and never changes — used for printers, servers, and network gear so they're always findable.</p></div>
+        <div class="card"><h4>169.254.x.x — the red flag</h4><p>If a device shows an address starting <b>169.254</b>, it means it <b>never got a real address</b> (DHCP failed). One of the most common "no internet" causes. Fix: <code>ipconfig /release</code> then <code>/renew</code>.</p></div>
+        <div class="card"><h4>127.0.0.1 — "myself"</h4><p>Always means "<b>this device itself</b>." Handy for checking that the computer's own networking is alive.</p></div>
+      </div>
+      <div class="note">You'll also hear <b>IPv6</b> — a newer, much longer address format (like <code>2001:db8::1</code>) created because the world ran out of the older IPv4 numbers. For most desk work, treat it the same way as a normal address.</div>
+    </section>
+
+    <section id="commands">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Your troubleshooting toolkit</h2></div>
+      <p class="lead">Type these into the Windows <b>Command Prompt</b> (click Start, type <code>cmd</code>, press Enter). These few cover most situations:</p>
+      <table>
+        <thead><tr><th>Command</th><th>In plain words</th></tr></thead>
+        <tbody>
+          <tr><td><code>ipconfig /all</code></td><td>Shows the device's full network info — its IP, gateway, DNS, and MAC. Your first look. (Real IP, or a 169.254?)</td></tr>
+          <tr><td><code>ipconfig /release</code> then <code>/renew</code></td><td>Throw away the current address and ask DHCP for a fresh one. Fixes a lot of "no address" problems.</td></tr>
+          <tr><td><code>ipconfig /flushdns</code></td><td>Clears the saved name&rarr;number list. Use when one site won't load but others do.</td></tr>
+          <tr><td><code>ping 8.8.8.8</code></td><td>"Can I reach the internet?" 8.8.8.8 is Google's public address. Replies = your connection works.</td></tr>
+          <tr><td><code>ping google.com</code></td><td>Same test, but by name — so it also checks DNS.</td></tr>
+          <tr><td><code>tracert google.com</code></td><td>Shows each stop along the way, so you can see <i>where</i> a connection dies.</td></tr>
+          <tr><td><code>nslookup google.com</code></td><td>Asks the phone book (DNS) to look up a name — confirms DNS is answering.</td></tr>
+        </tbody>
+      </table>
+      <div class="term">
+<span class="cmt"># Quick health check on a PC that "has no internet"</span>
+<span class="c">ipconfig /all</span>      <span class="cmt"># got a real IP? or a 169.254.x.x?</span>
+<span class="c">ping 8.8.8.8</span>      <span class="cmt"># internet reachable by number?</span>
+<span class="c">ping google.com</span>  <span class="cmt"># reachable by name? (tests DNS)</span>
       </div>
     </section>
 
-    <section id="protocols">
-      <div class="sec-head"><span class="sec-num">07</span><h2>Protocols: TCP vs UDP</h2></div>
-      <p class="lead">Both carry data, but with different trade-offs. The choice is reliability vs speed.</p>
-      <div class="grid2">
-        <div class="card"><h4>TCP — reliable</h4><p>Connection-oriented. Confirms delivery, re-sends lost data, keeps order. Used where accuracy matters: <b>web, email, file transfer, remote desktop</b>.</p></div>
-        <div class="card"><h4>UDP — fast</h4><p>Connectionless. No delivery guarantee, no re-sending — just speed. Used where a little loss is fine: <b>voice/VoIP, video streaming, DNS lookups</b>.</p></div>
+    <section id="diagnose">
+      <div class="sec-head"><span class="sec-num">09</span><h2>The game plan</h2></div>
+      <p class="lead">Almost every "it's not working" is one thing failing in a chain. Check it in order, bottom to top:</p>
+      <div class="flow">
+        <div class="flow-step"><span class="flow-q">1</span><div><p><b>Is it physically connected?</b> Cable clicked in, Wi-Fi joined, link light on. Start here — it's the most common cause.</p></div></div>
+        <div class="flow-step"><span class="flow-q">2</span><div><p><b>Does it have a real address?</b> Run <code>ipconfig /all</code>. A <b>169.254</b> address means DHCP failed and the PC gave itself a useless one.</p></div></div>
+        <div class="flow-step"><span class="flow-q">3</span><div><p><b>Can it reach the internet?</b> <code>ping 8.8.8.8</code>. Replies = the connection itself is fine.</p></div></div>
+        <div class="flow-step"><span class="flow-q">4</span><div><p><b>Do names work?</b> <code>ping 8.8.8.8</code> works but <code>ping google.com</code> fails &rarr; it's a <b>DNS</b> problem, not a connection problem.</p></div></div>
       </div>
-      <h3>Other protocols you'll see</h3>
+      <div class="callout"><b>The one rule to remember:</b> ping by number works but ping by name fails &rarr; <b>DNS</b>. Neither works &rarr; check the cable and the address first with <code>ipconfig</code>.</div>
+    </section>
+
+    <section id="helpdesk">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Everyday tickets &amp; where to start</h2></div>
+      <p class="lead">The common problems you'll see, and the first things to check:</p>
       <table>
-        <thead><tr><th>Protocol</th><th>Purpose</th></tr></thead>
+        <thead><tr><th>Problem</th><th>First things to check</th></tr></thead>
+        <tbody>
+          <tr><td><b>No internet on one PC</b></td><td>Cable/Wi-Fi connected &rarr; <code>ipconfig /all</code> for a real IP &rarr; ping 8.8.8.8 &rarr; ping by name</td></tr>
+          <tr><td><b>No internet for everyone</b></td><td>It's the modem/router/provider — likely an outage or the main box, not any one PC</td></tr>
+          <tr><td><b>Slow Wi-Fi</b></td><td>Distance from the access point, walls, too many devices, try 5 GHz, crowded channel</td></tr>
+          <tr><td><b>Can't print</b></td><td>Printer powered &amp; on the network, correct IP, print queue not stuck, driver installed</td></tr>
+          <tr><td><b>Can't reach a shared drive</b></td><td>Server reachable (ping it), permissions, the mapped drive path is correct</td></tr>
+          <tr><td><b>"IP address conflict"</b></td><td>Two devices on the same IP — usually a static IP clashing with DHCP. Release/renew.</td></tr>
+          <tr><td><b>VPN won't connect</b></td><td>Confirm internet works first, correct login, VPN app up to date, firewall not blocking it</td></tr>
+          <tr><td><b>One website won't load (others do)</b></td><td><code>ipconfig /flushdns</code>, try the site by number, check the site isn't just down for everyone</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="part"><span class="part-label">Part 3 — Going deeper</span><p class="part-sub">You don't need these on day one. Skim them now, and come back when a situation calls for it.</p></div>
+
+    <section id="protocols">
+      <div class="sec-head"><span class="sec-num">11</span><h2>TCP vs UDP</h2></div>
+      <p class="lead">Both carry data; the difference is <b>reliable vs fast</b>.</p>
+      <div class="analogy"><b>Think of it like sending a message.</b> <b>TCP</b> is registered mail — every piece is confirmed and re-sent if lost, arriving complete and in order. <b>UDP</b> is shouting across a room — fast, but if a word is missed, it's gone. You pick based on whether accuracy or speed matters more.</div>
+      <div class="grid2">
+        <div class="card"><h4>TCP — reliable</h4><p>Confirms delivery, re-sends lost pieces, keeps order. Used where accuracy matters: <b>web, email, file transfer, remote desktop</b>.</p></div>
+        <div class="card"><h4>UDP — fast</h4><p>No delivery guarantee, no re-sending — just speed. Used where a little loss is fine: <b>voice calls, video streaming, DNS lookups</b>.</p></div>
+      </div>
+      <h3>Other protocols you'll see named</h3>
+      <table>
+        <thead><tr><th>Protocol</th><th>What it does</th></tr></thead>
         <tbody>
           <tr><td><b>HTTP / HTTPS</b></td><td>Web traffic — HTTPS is the encrypted, secure version</td></tr>
-          <tr><td><b>DNS</b></td><td>Resolves names to IP addresses</td></tr>
-          <tr><td><b>DHCP</b></td><td>Hands out IP configuration automatically</td></tr>
+          <tr><td><b>DNS</b></td><td>Turns names into addresses (the phone book)</td></tr>
+          <tr><td><b>DHCP</b></td><td>Hands out IP addresses automatically</td></tr>
           <tr><td><b>SMTP / IMAP / POP3</b></td><td>Sending (SMTP) and receiving (IMAP/POP3) email</td></tr>
-          <tr><td><b>FTP / SFTP</b></td><td>File transfer — SFTP is the secure version</td></tr>
-          <tr><td><b>SSH</b></td><td>Secure encrypted remote command-line access</td></tr>
-          <tr><td><b>RDP</b></td><td>Remote Desktop — controlling a Windows machine remotely</td></tr>
-          <tr><td><b>ICMP</b></td><td>Diagnostics — what <code>ping</code> and <code>tracert</code> use</td></tr>
-          <tr><td><b>ARP</b></td><td>Maps an IP address to a MAC address on the local network</td></tr>
+          <tr><td><b>SSH / RDP</b></td><td>Secure remote command line (SSH) and Remote Desktop (RDP)</td></tr>
+          <tr><td><b>SMB</b></td><td>Windows file &amp; printer sharing</td></tr>
         </tbody>
       </table>
     </section>
 
     <section id="ports">
-      <div class="sec-head"><span class="sec-num">08</span><h2>Common ports</h2></div>
-      <p class="lead">Services live on numbered ports. When a firewall "blocks a port," it's blocking a specific service.</p>
+      <div class="sec-head"><span class="sec-num">12</span><h2>Ports</h2></div>
+      <p class="lead">Each service on a device listens on a numbered <b>port</b>. When a firewall "blocks a port," it's blocking one specific service.</p>
+      <div class="analogy"><b>Think of it like an apartment building.</b> The <b>IP address</b> gets the envelope to the right building; the <b>port number</b> gets it to the right apartment (service) inside. Web lives in apartment 443, email in another, and so on.</div>
       <table>
         <thead><tr><th>Port</th><th>Service</th><th>What it's for</th></tr></thead>
         <tbody>
-          <tr><td><code>80</code></td><td>HTTP</td><td>Unencrypted web traffic</td></tr>
-          <tr><td><code>443</code></td><td>HTTPS</td><td>Secure (encrypted) web traffic</td></tr>
-          <tr><td><code>53</code></td><td>DNS</td><td>Name-to-address resolution</td></tr>
+          <tr><td><code>80</code></td><td>HTTP</td><td>Web traffic (unencrypted)</td></tr>
+          <tr><td><code>443</code></td><td>HTTPS</td><td>Secure web traffic</td></tr>
+          <tr><td><code>53</code></td><td>DNS</td><td>Name lookups</td></tr>
           <tr><td><code>67 / 68</code></td><td>DHCP</td><td>Automatic IP assignment</td></tr>
-          <tr><td><code>22</code></td><td>SSH / SFTP</td><td>Secure remote access &amp; file transfer</td></tr>
           <tr><td><code>3389</code></td><td>RDP</td><td>Remote Desktop</td></tr>
-          <tr><td><code>25 / 587</code></td><td>SMTP</td><td>Sending email</td></tr>
-          <tr><td><code>143 / 993</code></td><td>IMAP</td><td>Receiving email (993 = secure)</td></tr>
           <tr><td><code>445</code></td><td>SMB</td><td>Windows file &amp; printer sharing</td></tr>
+          <tr><td><code>25 / 587</code></td><td>SMTP</td><td>Sending email</td></tr>
+          <tr><td><code>22</code></td><td>SSH/SFTP</td><td>Secure remote access</td></tr>
         </tbody>
       </table>
     </section>
 
-    <section id="wifi">
-      <div class="sec-head"><span class="sec-num">09</span><h2>Wi-Fi &amp; wireless</h2></div>
-      <p class="lead">Wireless follows the <strong>802.11</strong> standards. The two practical things you'll tune are the <strong>band</strong> (range vs speed) and the <strong>security</strong> (protecting the network).</p>
-      <h3>Frequency bands</h3>
-      <table>
-        <thead><tr><th>Band</th><th>Range</th><th>Speed</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td><b>2.4 GHz</b></td><td>Longer</td><td>Slower</td><td>Better through walls, but crowded &amp; prone to interference</td></tr>
-          <tr><td><b>5 GHz</b></td><td>Shorter</td><td>Faster</td><td>Less interference; the everyday choice for most clients</td></tr>
-          <tr><td><b>6 GHz</b></td><td>Shortest</td><td>Fastest</td><td>Wi-Fi 6E / 7 — newest, very clean, needs modern hardware</td></tr>
-        </tbody>
-      </table>
-      <h3>Security standards</h3>
-      <div class="grid2">
-        <div class="card"><h4>WPA3 <span class="tag teal">use</span></h4><p>The current standard — strongest encryption. Use it where all hardware supports it.</p></div>
-        <div class="card"><h4>WPA2 <span class="tag amber">ok</span></h4><p>Still widely used and acceptable. The realistic minimum for any network today.</p></div>
-        <div class="card"><h4>WEP / WPA <span class="tag coral">avoid</span></h4><p>Old and broken — trivially cracked. Never use for anything carrying real data.</p></div>
-      </div>
-      <h3>Useful terms</h3>
-      <p class="lead"><b>SSID</b> — the network's name. <b>Channel</b> — the specific frequency slice; overlapping channels between nearby APs cause slowdowns. <b>Guest network</b> — a separate SSID (ideally its own VLAN) that keeps visitors off internal systems. <b>802.11 a/b/g/n/ac/ax</b> — the generations, also marketed as Wi-Fi 4, 5, 6, and 7.</p>
+    <section id="osi">
+      <div class="sec-head"><span class="sec-num">13</span><h2>The OSI map</h2></div>
+      <p class="lead">You won't memorize this. It's a <b>map</b> everyone uses to point at <i>where</i> a problem is — "is this a cable problem or a name problem?" It has 7 layers; always troubleshoot from the bottom up.</p>
+      <div class="layer"><span class="lnum">7</span><span class="lname">Application</span><span class="lex">What the user sees — websites, email, file sharing</span></div>
+      <div class="layer"><span class="lnum">6</span><span class="lname">Presentation</span><span class="lex">Formatting &amp; encryption — HTTPS/TLS</span></div>
+      <div class="layer"><span class="lnum">5</span><span class="lname">Session</span><span class="lex">Opening &amp; keeping connections between apps</span></div>
+      <div class="layer"><span class="lnum">4</span><span class="lname">Transport</span><span class="lex">Reliable vs fast — TCP &amp; UDP, ports</span></div>
+      <div class="layer"><span class="lnum">3</span><span class="lname">Network</span><span class="lex">Addresses &amp; routing between networks — IP, routers</span></div>
+      <div class="layer"><span class="lnum">2</span><span class="lname">Data Link</span><span class="lex">Local delivery on one network — MAC, switches</span></div>
+      <div class="layer"><span class="lnum">1</span><span class="lname">Physical</span><span class="lex">The actual signal — cables, Wi-Fi radio, connectors</span></div>
+      <div class="callout"><b>Memory aid (top to bottom):</b> "All People Seem To Need Data Processing." In practice: confirm the cable (layer 1) before you suspect DNS (layer 7).</div>
     </section>
 
-    <section id="cabling">
-      <div class="sec-head"><span class="sec-num">10</span><h2>Cabling &amp; connectors</h2></div>
-      <p class="lead">Wired connections are still the backbone. The key limits: copper Ethernet maxes out at <strong>100 metres</strong> per run, and the cable category sets the speed.</p>
+    <section id="subnetting">
+      <div class="sec-head"><span class="sec-num">14</span><h2>Subnetting (the "which neighborhood" math)</h2></div>
+      <p class="lead">This is the math behind which addresses count as "the same neighborhood." It's more advanced — here's just the gist.</p>
+      <p class="lead">An IP address splits into a <strong>network part</strong> (which neighborhood) and a <strong>host part</strong> (which house). The <b>subnet mask</b> draws that dividing line.</p>
+      <div class="note">Example: <code>192.168.1.50 /24</code> — the <b>/24</b> means the first three numbers (<b>192.168.1</b>) are the neighborhood, and the last number (<b>50</b>) is the specific house. Everything that shares <code>192.168.1.x</code> is on the same network and can talk directly.</div>
+      <div class="note">Two addresses in each neighborhood are reserved: the first (the "network address," e.g. <code>192.168.1.0</code>) and the last (the "broadcast address," e.g. <code>192.168.1.255</code>). That's why a /24 has 256 total but only 254 usable for devices.</div>
+    </section>
+
+    <section id="cidr">
+      <div class="sec-head"><span class="sec-num">15</span><h2>CIDR quick reference</h2></div>
+      <p class="lead">"CIDR" notation (the <code>/number</code>) just counts how big the neighborhood is. A reference for when you see one:</p>
       <table>
-        <thead><tr><th>Cable</th><th>Max speed</th><th>Notes</th></tr></thead>
+        <thead><tr><th>CIDR</th><th>Subnet mask</th><th>Usable devices</th><th>Typical use</th></tr></thead>
         <tbody>
-          <tr><td><b>Cat5e</b></td><td>1 Gbps</td><td>The common baseline for desks &amp; phones</td></tr>
-          <tr><td><b>Cat6</b></td><td>up to 10 Gbps</td><td>10 Gbps only on shorter runs (~55 m)</td></tr>
-          <tr><td><b>Cat6a</b></td><td>10 Gbps</td><td>10 Gbps over the full 100 m</td></tr>
-          <tr><td><b>Fiber optic</b></td><td>10+ Gbps</td><td>Long distance, immune to electrical interference — used for backbones &amp; between buildings</td></tr>
+          <tr><td><code>/24</code></td><td>255.255.255.0</td><td><b>254</b></td><td>The standard office network size</td></tr>
+          <tr><td><code>/25</code></td><td>255.255.255.128</td><td><b>126</b></td><td>Splitting a /24 into two halves</td></tr>
+          <tr><td><code>/26</code></td><td>255.255.255.192</td><td><b>62</b></td><td>A small department segment</td></tr>
+          <tr><td><code>/16</code></td><td>255.255.0.0</td><td><b>65,534</b></td><td>A large network (all of 10.1.x.x)</td></tr>
+          <tr><td><code>/30</code></td><td>255.255.255.252</td><td><b>2</b></td><td>A link between two routers</td></tr>
         </tbody>
       </table>
-      <div class="grid2">
-        <div class="card"><h4>RJ45</h4><p>The standard 8-pin connector on Ethernet cables.</p></div>
-        <div class="card"><h4>PoE</h4><p>Power over Ethernet — delivers power <i>and</i> data over one cable. Powers APs, IP phones, and cameras without a separate adapter.</p></div>
-        <div class="card"><h4>Straight-through vs crossover</h4><p>Old distinction for which devices connect to which. Modern gear has <b>Auto-MDIX</b>, so almost any cable works either way now.</p></div>
-        <div class="card"><h4>Patch panel</h4><p>Where in-wall cables terminate in a rack, then patch to the switch. Good labelling here saves hours of troubleshooting.</p></div>
-      </div>
     </section>
 
     <section id="vpn">
-      <div class="sec-head"><span class="sec-num">11</span><h2>VPN &amp; remote access</h2></div>
-      <p class="lead">A <strong>VPN</strong> (Virtual Private Network) creates an encrypted tunnel across the internet, so a remote device behaves as if it's safely on the internal network.</p>
+      <div class="sec-head"><span class="sec-num">16</span><h2>VPN &amp; remote access</h2></div>
+      <p class="lead">A <strong>VPN</strong> (Virtual Private Network) lets a device somewhere else behave as if it's safely inside the office network.</p>
+      <div class="analogy"><b>Think of it like a private, armored tunnel</b> through the public internet. A staff member at home connects through the tunnel, and everything they send is scrambled (encrypted) so nobody along the way can read it.</div>
       <div class="grid2">
-        <div class="card"><h4>Remote-access VPN</h4><p>One user (e.g. a staff member working from home) connects securely back to the office network.</p></div>
-        <div class="card"><h4>Site-to-site VPN</h4><p>Permanently links two locations' networks together over the internet.</p></div>
+        <div class="card"><h4>Remote-access VPN</h4><p>One person (e.g. working from home) connects securely back to the office network.</p></div>
+        <div class="card"><h4>Site-to-site VPN</h4><p>Permanently links two office locations' networks together over the internet.</p></div>
       </div>
-      <div class="note"><b>Why it matters here:</b> a VPN encrypts traffic in transit, so any patient information a remote staff member accesses is protected on the way — a key control for handling PHI outside the building under HIPAA.</div>
-    </section>
-
-    <section id="commands">
-      <div class="sec-head"><span class="sec-num">12</span><h2>Troubleshooting commands</h2></div>
-      <p class="lead">Run these in Windows Command Prompt or PowerShell — your daily toolkit.</p>
-      <table>
-        <thead><tr><th>Command</th><th>What it tells you</th></tr></thead>
-        <tbody>
-          <tr><td><code>ipconfig /all</code></td><td>Full config — IP, subnet mask, gateway, DNS servers, MAC address</td></tr>
-          <tr><td><code>ipconfig /release</code> &amp; <code>/renew</code></td><td>Force a fresh IP from DHCP</td></tr>
-          <tr><td><code>ipconfig /flushdns</code></td><td>Clear the local DNS cache (fixes "old address" issues)</td></tr>
-          <tr><td><code>ping 8.8.8.8</code></td><td>Can you reach the internet by IP? (Google DNS)</td></tr>
-          <tr><td><code>ping google.com</code></td><td>Can you reach it by name? (tests DNS too)</td></tr>
-          <tr><td><code>tracert google.com</code></td><td>Shows every hop — finds <i>where</i> a connection dies</td></tr>
-          <tr><td><code>nslookup google.com</code></td><td>Asks DNS to resolve a name; confirms DNS works</td></tr>
-          <tr><td><code>netstat -ano</code></td><td>Active connections and which process owns each port</td></tr>
-          <tr><td><code>getmac</code></td><td>Shows the machine's MAC address(es)</td></tr>
-        </tbody>
-      </table>
-      <div class="term">
-<span class="cmt"># Quick health check on a machine that "has no internet"</span>
-<span class="c">ipconfig /all</span>      <span class="cmt"># got a real IP? or a 169.254.x.x?</span>
-<span class="c">ping 8.8.8.8</span>      <span class="cmt"># internet reachable by IP?</span>
-<span class="c">ping google.com</span>  <span class="cmt"># reachable by name? (DNS)</span>
-      </div>
-    </section>
-
-    <section id="diagnose">
-      <div class="sec-head"><span class="sec-num">13</span><h2>Diagnostic logic</h2></div>
-      <p class="lead">Most connectivity problems come down to one layer. Check them bottom to top:</p>
-      <div class="flow">
-        <div class="flow-step"><span class="flow-q">1</span><div><p><b>Physical / link</b> — is it actually connected? Cable seated, Wi-Fi associated, link light on.</p></div></div>
-        <div class="flow-step"><span class="flow-q">2</span><div><p><b>Address (DHCP)</b> — does it have a valid IP? A <b>169.254.x.x</b> address means DHCP failed and the machine self-assigned a useless address.</p></div></div>
-        <div class="flow-step"><span class="flow-q">3</span><div><p><b>Gateway</b> — can it reach the router? <code>ping 8.8.8.8</code> works = connection is fine.</p></div></div>
-        <div class="flow-step"><span class="flow-q">4</span><div><p><b>Names (DNS)</b> — <code>ping 8.8.8.8</code> works but <code>ping google.com</code> fails = it's a DNS problem, not a connection problem.</p></div></div>
-      </div>
-      <div class="callout"><b>The one rule to remember:</b> pings by IP succeed but pings by name fail → DNS. Neither works → check IP and gateway first with <code>ipconfig</code>.</div>
+      <div class="note"><b>Why it matters here:</b> a VPN protects patient information while it travels — a key safeguard when staff access systems from outside the building under HIPAA.</div>
     </section>
 
     <section id="firewall">
-      <div class="sec-head"><span class="sec-num">14</span><h2>Firewalls</h2></div>
-      <p class="lead">A firewall controls what traffic is allowed in and out, based on an ordered <strong>rule set</strong> (ACL). Each rule says allow/deny <i>[traffic]</i> from <i>[source]</i> to <i>[destination]</i> on <i>[port]</i>. Rules are checked top to bottom and stop at the first match — so <strong>order matters</strong>.</p>
+      <div class="sec-head"><span class="sec-num">17</span><h2>Firewalls</h2></div>
+      <p class="lead">A firewall decides what traffic is allowed in and out, using an ordered <strong>rulebook</strong>. Each rule says allow or deny certain traffic. Rules are read top to bottom and stop at the first match — so <strong>order matters</strong>.</p>
+      <div class="analogy"><b>Think of it like a security guard with a checklist.</b> Each visitor (packet) is checked against the list from the top; the first rule that matches decides whether they're let in. Anything not on the "allow" list is turned away by default.</div>
       <div class="grid2">
-        <div class="card"><h4>Default deny</h4><p>Most rule sets end with an implicit "deny everything else." Allow only what you need; block the rest. This is the secure starting stance.</p></div>
-        <div class="card"><h4>Stateful</h4><p>Remembers connections it has seen. When your PC requests a page, the reply is allowed back automatically — no separate return rule needed. Nearly all modern firewalls are stateful.</p></div>
-        <div class="card"><h4>Inbound vs outbound</h4><p>Separate rule sets. Inbound blocks unsolicited traffic from outside; outbound controls what your machines may send (stops malware "phoning home").</p></div>
-        <div class="card"><h4>Host vs network</h4><p>A <b>network</b> firewall sits at the edge protecting everything behind it; a <b>host</b> firewall (e.g. Windows Defender Firewall) runs on a single machine.</p></div>
+        <div class="card"><h4>Default deny</h4><p>Allow only what's needed; block everything else. The secure starting stance.</p></div>
+        <div class="card"><h4>Stateful</h4><p>Remembers connections it has seen, so when your PC asks for a page, the reply is allowed back automatically.</p></div>
+        <div class="card"><h4>Inbound vs outbound</h4><p>Inbound blocks unwanted traffic from outside; outbound controls what your machines may send (stops malware "phoning home").</p></div>
+        <div class="card"><h4>Host vs network</h4><p>A <b>network</b> firewall protects everything behind it; a <b>host</b> firewall (e.g. Windows Defender Firewall) runs on one machine.</p></div>
       </div>
-      <div class="note"><b>Why it matters here:</b> firewall rules plus VLAN segmentation are a core part of demonstrating that systems holding patient data are shielded from the open internet and from less-trusted parts of the internal network — which maps directly onto HIPAA security expectations.</div>
+      <div class="note"><b>Why it matters here:</b> firewall rules plus network segmentation (next section) show that systems holding patient data are shielded from the open internet — part of meeting HIPAA security expectations.</div>
     </section>
 
     <section id="vlan">
-      <div class="sec-head"><span class="sec-num">15</span><h2>VLANs &amp; network design</h2></div>
-      <p class="lead">A VLAN splits one physical switch into multiple separate logical networks. You assign each switch port a <strong>VLAN ID</strong> (1–4094) — port 5 is "Staff," port 12 is "Guest" — and devices only see traffic within their own VLAN, even on shared hardware.</p>
-      <div class="callout"><b>By design, VLANs can't talk to each other</b> through the switch alone. To allow specific cross-VLAN traffic, it must pass through a router or layer-3 switch (<i>inter-VLAN routing</i> / "router on a stick") — and that routing point is exactly where firewall rules decide which flows are permitted.</div>
-      <div class="grid2">
-        <div class="card"><h4>Access port</h4><p>Carries one VLAN. What a normal device — a PC or printer — plugs into.</p></div>
-        <div class="card"><h4>Trunk port</h4><p>Carries many VLANs at once using 802.1Q tags. The link between two switches, or switch-to-router.</p></div>
-      </div>
-      <h3>A sensible segmentation pattern</h3>
-      <p class="lead">Separate everything by default, then open only the paths that should exist:</p>
+      <div class="sec-head"><span class="sec-num">18</span><h2>VLANs &amp; network design</h2></div>
+      <p class="lead">A <b>VLAN</b> splits one physical switch into several separate networks. Each switch port is tagged with a VLAN, and devices only see traffic within their own VLAN — even though they share the same hardware.</p>
+      <div class="analogy"><b>Think of it like floors in one building.</b> The Guest floor and the Clinical floor share the same building (switch), but people on one floor can't wander onto another. They only connect where a router — with firewall rules — lets them.</div>
+      <div class="callout"><b>By design, VLANs can't talk to each other</b> through the switch alone. Allowing specific cross-VLAN traffic has to go through a router, and that's exactly where firewall rules decide which flows are permitted.</div>
+      <h3>A sensible layout for a clinic</h3>
       <p style="margin:8px 0 4px">
-        <span class="tag teal">VLAN 10 · Clinical / EHR</span>
-        <span class="tag teal">VLAN 20 · Staff</span>
-        <span class="tag amber">VLAN 30 · Guest Wi-Fi</span>
-        <span class="tag coral">VLAN 40 · VoIP phones</span>
-        <span class="tag coral">VLAN 50 · Printers / devices</span>
+        <span class="tag teal">Clinical / EHR</span>
+        <span class="tag teal">Staff</span>
+        <span class="tag amber">Guest Wi-Fi</span>
+        <span class="tag coral">VoIP phones</span>
+        <span class="tag coral">Printers / devices</span>
       </p>
-      <p class="lead" style="margin-top:10px">Then firewall rules at the routing point allow only necessary flows — e.g. Staff may reach a specific server, Guest reaches nothing internal at all.</p>
-    </section>
-
-    <section id="helpdesk">
-      <div class="sec-head"><span class="sec-num">16</span><h2>Common help-desk issues</h2></div>
-      <p class="lead">The everyday tickets and where to start:</p>
-      <table>
-        <thead><tr><th>Symptom</th><th>First things to check</th></tr></thead>
-        <tbody>
-          <tr><td><b>No internet on one PC</b></td><td>Cable/Wi-Fi → <code>ipconfig /all</code> for a valid IP → ping gateway → ping by IP vs name</td></tr>
-          <tr><td><b>No internet for everyone</b></td><td>Check the modem/router/ISP — likely an outage or the edge device, not the PC</td></tr>
-          <tr><td><b>Slow Wi-Fi</b></td><td>Signal strength, band (try 5 GHz), too many devices, channel interference, distance from AP</td></tr>
-          <tr><td><b>Can't print</b></td><td>Printer powered &amp; on network, correct IP, queue not stuck, driver installed, same VLAN/subnet</td></tr>
-          <tr><td><b>Can't reach shared drive</b></td><td>Server reachable (ping), permissions, SMB (port 445), mapped drive path correct</td></tr>
-          <tr><td><b>"IP address conflict"</b></td><td>Two devices on the same IP — usually a static IP clashing with DHCP; release/renew</td></tr>
-          <tr><td><b>VPN won't connect</b></td><td>Internet working first, correct credentials, VPN client up to date, firewall not blocking it</td></tr>
-          <tr><td><b>Website won't load (others do)</b></td><td><code>ipconfig /flushdns</code>, try by IP, check it's not just that site being down</td></tr>
-        </tbody>
-      </table>
+      <p class="lead" style="margin-top:10px">Keep everything separate by default, then allow only the necessary paths — e.g. Staff may reach one specific server, while Guest reaches nothing internal at all.</p>
     </section>
 
   </main>
@@ -470,8 +489,8 @@
 
 <footer>
   <div class="wrap">
-    <b>Networking Cheat Sheet</b> · Internal IT reference · Legacy Behavioral Health Center<br>
-    Foundational concepts for MIS / IT support · Print this page for a desk copy.
+    <b>Networking — Made Simple</b> · Internal IT reference · Legacy Behavioral Health Center<br>
+    Start with Part 1 · Print this page for a desk copy.
   </div>
 </footer>
 
