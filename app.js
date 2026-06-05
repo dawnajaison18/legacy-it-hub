@@ -75,6 +75,16 @@ function openTopic(key,id){
   document.querySelectorAll('#side-list button').forEach(b=>b.classList.toggle('active',b.dataset.t===id));
   const activeBtn=document.querySelector('#side-list button.active');
   if(activeBtn){const grp=activeBtn.closest('.side-group'); if(grp) grp.classList.add('open');}
+  if(t.embed){
+    document.getElementById('topic-content').innerHTML=`
+      <span class="crumb">${c.name}</span>
+      <h1>${t.title}</h1>
+      ${t.lead?`<p class="lead">${t.lead}</p>`:''}
+      <p class="embed-actions"><a href="${t.embed}" target="_blank" rel="noopener">Open full page ↗</a></p>
+      <iframe class="embed-frame" src="${t.embed}" title="${t.title}" loading="lazy"></iframe>`;
+    window.scrollTo({top:0,behavior:'smooth'});
+    return;
+  }
   const imgMap=(typeof STEP_IMAGES!=='undefined'&&STEP_IMAGES[id])||[];
   let hasImg=false;
   const steps=t.steps.map((s,idx)=>{

@@ -552,6 +552,9 @@ const DATA = {
     name:"Networking", icon:"🌐",
     blurb:"Connectivity, Wi-Fi, shared drives, VPN, and the common network fixes you handle daily.",
     topics:[
+      { id:"net-cheatsheet", title:"Networking Cheat Sheet",
+        lead:"A complete working reference for IT support — addressing, devices, protocols, wireless, cabling, troubleshooting, firewalls, and VLANs. Use the table of contents inside to jump around.",
+        embed:"networking-cheat-sheet.html" },
       { id:"net-nointernet", title:"No Internet Connection",
         lead:"A computer that's plugged in with a cable can't reach the internet or company systems.",
         steps:[
